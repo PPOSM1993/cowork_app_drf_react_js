@@ -1,30 +1,17 @@
 from rest_framework import serializers
-from django.contrib.auth import get_user_model, authenticate
-from django.core.validators import RegexValidator
+from django.contrib.auth import get_user_model
 from django.contrib.auth.password_validation import validate_password
-from rest_framework_simplejwt.tokens import RefreshToken
 from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from datetime import date
 
 User = get_user_model()
 
-
 class RegisterSerializer(serializers.ModelSerializer):
-    password = serializers.CharField(
-        write_only=True, required=True, validators=[validate_password],
-        style={'input_type': 'password'}
-    )
-    password2 = serializers.CharField(
-        write_only=True, required=True, style={'input_type': 'password'}
-    )
+    password = serializers.CharField(write_only=True, required=True, validators=[validate_password], style={'input_type': 'password'})
+    password2 = serializers.CharField(write_only=True, required=True, style={'input_type': 'password'}, label="Confirm Password")
 
     class Meta:
         model = User
-        fields = [
-            'email', 'username', 'first_name', 'last_name',
-            'rut', 'phone', 'birth_date',
-            'accepted_terms', 'password', 'password2'
-        ]
+        fields = ['email', 'username', 'first_name', 'last_name', 'rut', 'phone', 'birth_date', 'accepted_terms', 'password', 'password2']
 
     def validate(self, attrs):
         if attrs['password'] != attrs['password2']:
@@ -32,18 +19,6 @@ class RegisterSerializer(serializers.ModelSerializer):
         if not attrs.get("accepted_terms"):
             raise serializers.ValidationError({"accepted_terms": "Debes aceptar los términos y condiciones."})
         return attrs
-
-    def validate_birth_date(self, value):
-        today = date.today()
-        age = today.year - value.year - ((today.month, today.day) < (value.month, value.day))
-        if age < 18:
-            raise serializers.ValidationError("Debes tener al menos 18 años.")
-        return value
-
-    def validate_rut(self, value):
-        if User.objects.filter(rut=value).exists():
-            raise serializers.ValidationError("Este RUT ya está registrado.")
-        return value
 
     def create(self, validated_data):
         validated_data.pop('password2')
@@ -53,42 +28,50 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-
 class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-        token['email'] = user.email
-        token['name'] = user.first_name
-        token['is_staff'] = user.is_staff
-        return token
-
-
-class LoginSerializer(serializers.Serializer):
-    username = serializers.CharField(label="Email, Username o RUT")
-    password = serializers.CharField(label="Contraseña", style={'input_type': 'password'}, trim_whitespace=False)
+    username_field = User.USERNAME_FIELD
 
     def validate(self, attrs):
-        username = attrs.get('username')
-        password = attrs.get('password')
+        # Aquí validamos manualmente email/username/rut para login
+        credentials = attrs.get("username"), attrs.get("password")
+        username_or_email_or_rut = attrs.get("username")
 
-        if username and password:
-            user = authenticate(request=self.context.get('request'), username=username, password=password)
-            if not user:
-                raise serializers.ValidationError("Credenciales inválidas.")
-        else:
-            raise serializers.ValidationError("Se requieren 'username' y 'password'.")
+        user = None
+        # Intentamos obtener el usuario por email, username o rut
+        try:
+            user = User.objects.get(email=username_or_email_or_rut)
+        except User.DoesNotExist:
+            try:
+                user = User.objects.get(username=username_or_email_or_rut)
+            except User.DoesNotExist:
+                try:
+                    user = User.objects.get(rut=username_or_email_or_rut)
+                except User.DoesNotExist:
+                    pass
 
-        attrs['user'] = user
-        return attrs
+        if user is None:
+            raise serializers.ValidationError('Usuario o contraseña incorrectos.')
 
+        if not user.check_password(attrs.get('password')):
+            raise serializers.ValidationError('Usuario o contraseña incorrectos.')
+
+        if not user.is_active:
+            raise serializers.ValidationError('Usuario inactivo.')
+
+        data = super().validate({'username': user.email, 'password': attrs.get('password')})
+
+        data['user'] = {
+            "id": user.id,
+            "email": user.email,
+            "username": user.username,
+            "first_name": user.first_name,
+            "last_name": user.last_name,
+            "rut": user.rut,
+        }
+        return data
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = [
-            'id', 'email', 'username', 'first_name', 'last_name',
-            'rut', 'phone', 'birth_date',
-            'accepted_terms', 'is_active', 'is_staff', 'date_joined'
-        ]
+        fields = ['id', 'email', 'username', 'first_name', 'last_name', 'rut', 'phone', 'birth_date', 'accepted_terms', 'is_active', 'is_staff', 'date_joined']
         read_only_fields = ['is_active', 'is_staff', 'date_joined']

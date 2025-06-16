@@ -7,7 +7,7 @@ from rest_framework_simplejwt.tokens import RefreshToken, TokenError
 from django.contrib.auth import get_user_model
 
 from .serializers import RegisterSerializer, CustomTokenObtainPairSerializer
-from .permissions import IsOwner
+from .permissions import *
 from rest_framework.generics import RetrieveUpdateAPIView
 from .serializers import *
 
@@ -46,3 +46,14 @@ class ProfileDetailView(RetrieveUpdateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = [IsOwner]
+    
+    def get_object(self):
+        return self.request.user
+
+class ReserveSpaceView(APIView):
+    permission_classes = [IsAuthenticated, HasActiveMembership]
+
+    def post(self, request):
+        user = request.user
+        # Aquí lógica para reservar espacio (pendiente implementación)
+        return Response({"message": f"Reserva realizada con éxito para {user.email}"}, status=status.HTTP_201_CREATED)
