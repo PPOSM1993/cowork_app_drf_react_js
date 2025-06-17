@@ -43,6 +43,25 @@ INSTALLED_APPS = [
     'corsheaders',
     
     'apps.authentication',
+    'apps.analytics',
+    'apps,=.api_gateway',
+    'apps.blog',
+    'apps.branches',
+    'apps.chat',
+    'apps.identity_verification',
+    'apps.integrations',
+    'memberships',
+    'apps.notifications',
+    'apps.payments',
+    'apps.profiles',
+    'apps.recomendations',
+    'apps.referrals',
+    'apps.reports',
+    'apps.reservations',
+    'apps.resources',
+    'apps.reviews',
+    'apps.spaces',
+    'apps.support'
 ]
 
 MIDDLEWARE = [
