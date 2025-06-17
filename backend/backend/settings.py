@@ -38,11 +38,28 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
     
     'apps.authentication',
+    'apps.chat',
+    'apps.analytics',
+    'apps.api_gateway',
+    'apps.branches',
+    'apps.identity_verification',
+    'apps.integrations',
+    'apps.notifications',
+    'apps.payments',
+    'apps.referrals',
+    'apps.recomendation',
+    'apps.reports',
+    'apps.reservations',
+    'apps.resources',
+    'apps.reviews',
+    'apps.spaces',
+    'apps.support'
 ]
 
 MIDDLEWARE = [
