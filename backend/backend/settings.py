@@ -38,23 +38,26 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    
     'rest_framework',
     'rest_framework_simplejwt',
     'corsheaders',
+    'django_filters',
+
     
     'apps.authentication',
     'apps.analytics',
-    'apps,=.api_gateway',
+    'apps.api_gateway',
     'apps.blog',
     'apps.branches',
     'apps.chat',
     'apps.identity_verification',
     'apps.integrations',
-    'memberships',
+    'apps.memberships',
     'apps.notifications',
     'apps.payments',
     'apps.profiles',
-    'apps.recomendations',
+    'apps.recommendation',
     'apps.referrals',
     'apps.reports',
     'apps.reservations',
@@ -160,7 +163,17 @@ REST_FRAMEWORK = {
     ],
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
-    ]
+    ],
+    
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
+    'PAGE_SIZE': 10,
+
+    'DEFAULT_FILTER_BACKENDS': [
+        'django_filters.rest_framework.DjangoFilterBackend',
+        'rest_framework.filters.SearchFilter',
+        'rest_framework.filters.OrderingFilter',
+    ],
+    
 }
 
 SIMPLE_JWT = {
