@@ -28,38 +28,32 @@ class RegisterSerializer(serializers.ModelSerializer):
         user.save()
         return user
 
-class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
-    username_field = User.USERNAME_FIELD
+from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
+from rest_framework import serializers
+from django.contrib.auth import get_user_model
+from django.contrib.auth.hashers import check_password
 
+User = get_user_model()
+
+class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
     def validate(self, attrs):
-        # Aquí validamos manualmente email/username/rut para login
-        credentials = attrs.get("username"), attrs.get("password")
-        username_or_email_or_rut = attrs.get("username")
+        identifier = attrs.get("username")  # Puede ser email, username o rut
+        password = attrs.get("password")
 
         user = None
-        # Intentamos obtener el usuario por email, username o rut
-        try:
-            user = User.objects.get(email=username_or_email_or_rut)
-        except User.DoesNotExist:
+        for field in ['email', 'username', 'rut']:
             try:
-                user = User.objects.get(username=username_or_email_or_rut)
+                user = User.objects.get(**{field: identifier})
+                break
             except User.DoesNotExist:
-                try:
-                    user = User.objects.get(rut=username_or_email_or_rut)
-                except User.DoesNotExist:
-                    pass
+                continue
 
-        if user is None:
-            raise serializers.ValidationError('Usuario o contraseña incorrectos.')
-
-        if not user.check_password(attrs.get('password')):
-            raise serializers.ValidationError('Usuario o contraseña incorrectos.')
-
+        if user is None or not user.check_password(password):
+            raise serializers.ValidationError("Usuario o contraseña incorrectos.")
         if not user.is_active:
-            raise serializers.ValidationError('Usuario inactivo.')
+            raise serializers.ValidationError("El usuario está inactivo.")
 
-        data = super().validate({'username': user.email, 'password': attrs.get('password')})
-
+        data = super().validate({'username': user.email, 'password': password})
         data['user'] = {
             "id": user.id,
             "email": user.email,
@@ -69,6 +63,7 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
             "rut": user.rut,
         }
         return data
+
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
