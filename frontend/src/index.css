@@ -1,1 +1,9 @@
 @import "tailwindcss";
+
+.subir {
+    margin-top: -30px;
+}
+
+.subir-form {
+    margin-top: -40px;
+}

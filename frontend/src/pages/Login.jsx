@@ -4,7 +4,8 @@ import { useNavigate } from 'react-router-dom';
 import { MdOutlineLogin } from "react-icons/md";
 import Swal from 'sweetalert2'
 import logo from '../assets/3.png'
-export default function Login() {
+
+const Login = () => {
 
   const { login } = useAuth();
   const navigate = useNavigate();
@@ -48,16 +49,16 @@ export default function Login() {
     <>
       <div className="min-h-screen grid grid-cols-1 md:grid-cols-1 bg-gradient-to-br bg-[#242424]">
         {/* Columna Izquierda - Logo y formulario */}
-        <div className="flex flex-col items-center justify-center gap-y-6 p-6">
+        <div className="flex flex-col items-center justify-center gap-y-6 subir">
           <img src={logo} alt="Logo" className="w-3/4 max-w-xs" />
 
-          <div className="w-full max-w-md bg-white p-8 rounded-2xl shadow-lg">
-            <h2 className="text-2xl font-bold mb-6 text-center text-gray-800">Iniciar Sesión</h2>
+          <div className="w-full max-w-md bg-[#242424] p-8 subir-form">
+            <h2 className="text-2xl font-bold mb-6 text-center text-white">Iniciar Sesión</h2>
 
             <form onSubmit={handleSubmit} className="space-y-4">
               {/* email */}
               <div>
-                <label htmlFor="email" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="email" className="block text-sm font-medium text-white">
                   Correo electrónico
                 </label>
                 <input
@@ -67,13 +68,13 @@ export default function Login() {
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500"
+                  className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-white"
                 />
               </div>
 
               {/* password */}
               <div>
-                <label htmlFor="password" className="block text-sm font-medium text-gray-700">
+                <label htmlFor="password" className="block text-sm font-medium text-white">
                   Contraseña
                 </label>
                 <input
@@ -83,7 +84,7 @@ export default function Login() {
                   value={formData.password}
                   onChange={handleChange}
                   required
-                  className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500"
+                  className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-white"
                 />
               </div>
 
@@ -92,12 +93,12 @@ export default function Login() {
                 type="submit"
                 disabled={loading}
                 className={`w-full flex items-center justify-center gap-2 p-2 rounded-md transition duration-300 
-            ${loading ? 'bg-yellow-600 cursor-not-allowed' : 'bg-yellow-500 hover:bg-yellow-400'} 
-            text-white font-semibold`}
+            ${loading ? 'bg-[#ffcc36] cursor-not-allowed' : 'bg-[#ffcc36] hover:bg-[#ffcc36]'} 
+            text-black font-semibold`}
               >
                 {loading ? (
                   <>
-                    <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                    <svg className="animate-spin h-5 w-5 text-black" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
                       <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
                       <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v8H4z" />
                     </svg>
@@ -113,7 +114,7 @@ export default function Login() {
             </form>
 
             <div className="text-center mt-4">
-              <a href="/register" className="text-sm text-yellow-500 hover:underline">
+              <a href="/register" className="text-sm text-white hover:underline">
                 ¿No tienes cuenta? Regístrate
               </a>
             </div>
@@ -128,3 +129,5 @@ export default function Login() {
     </>
   );
 }
+
+export default Login;
