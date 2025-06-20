@@ -186,3 +186,17 @@ AUTHENTICATION_BACKENDS = [
     'apps.authentication.backends.EmailUsernameRutBackend',  # Custom backend
     'django.contrib.auth.backends.ModelBackend',             # Por defecto (opcional)
 ]
+
+# Modo desarrollo (email por consola)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+DEFAULT_FROM_EMAIL = 'no-reply@coworkapp.local'
+
+"""
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'tu-correo@gmail.com'
+EMAIL_HOST_PASSWORD = 'tu-contraseña-o-token'
+EMAIL_USE_TLS = True
+    
+"""
