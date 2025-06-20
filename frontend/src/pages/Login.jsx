@@ -93,7 +93,7 @@ const Login = () => {
                 type="submit"
                 disabled={loading}
                 className={`w-full flex items-center justify-center gap-2 p-2 rounded-md transition duration-300 
-            ${loading ? 'bg-[#ffcc36] cursor-not-allowed' : 'bg-[#ffcc36] hover:bg-[#ffcc36]'} 
+            ${loading ? 'bg-[#ffcc36] cursor-pointer' : 'bg-[#ffcc36] hover:bg-[#ffcc36]'} 
             text-black font-semibold`}
               >
                 {loading ? (
