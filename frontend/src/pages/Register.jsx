@@ -14,7 +14,7 @@ const Register = () => {
         last_name: '',
         rut: '',
         password: '',
-        confirm_password: '',
+        password2: '',
         accepted_terms: false
     });
 
@@ -29,7 +29,7 @@ const Register = () => {
         e.preventDefault();
         setLoading(true);
 
-        if (formData.password !== formData.confirm_password) {
+        if (formData.password !== formData.password2) {
             Swal.fire({
                 icon: 'warning',
                 title: 'Contraseñas no coinciden',
@@ -176,7 +176,7 @@ const Register = () => {
                                 Confirmar Contraseña
                             </label>
                             <input
-                                name="confirm_password"
+                                name="password2"
                                 type="password"
                                 placeholder="Confirmar contraseña"
                                 onChange={handleChange}
@@ -198,7 +198,7 @@ const Register = () => {
                             type="submit"
                             disabled={loading}
                             className={`w-full flex items-center justify-center gap-2 p-2 rounded-md transition duration-300 
-            ${loading ? 'bg-[#ffcc36] cursor-not-allowed' : 'bg-[#ffcc36] hover:bg-[#ffcc36]'} 
+            ${loading ? 'bg-[#ffcc36] cursor-pointer' : 'bg-[#ffcc36] hover:bg-[#ffcc36]'} 
             text-black font-semibold`}
                         >
                             {loading ? (
