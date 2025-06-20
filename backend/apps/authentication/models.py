@@ -3,7 +3,7 @@ from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin, BaseU
 from django.core.validators import RegexValidator
 
 class UserManager(BaseUserManager):
-    def create_user(self, email, username, first_name, last_name, rut=None, password=None, **extra_fields):
+    def create_user(self, email, username, first_name, last_name, rut=None, password=None, password2=None, **extra_fields):
         if not email:
             raise ValueError('Users must have an email address')
         if not username:
@@ -18,11 +18,11 @@ class UserManager(BaseUserManager):
             rut=rut,
             **extra_fields
         )
-        user.set_password(password)
+        user.set_password(password, password2)
         user.save(using=self._db)
         return user
 
-    def create_superuser(self, email, username, first_name, last_name, rut=None, password=None, **extra_fields):
+    def create_superuser(self, email, username, first_name, last_name, rut=None, password=None, password2=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
         extra_fields.setdefault('accepted_terms', True)
@@ -32,7 +32,7 @@ class UserManager(BaseUserManager):
         if extra_fields.get('is_superuser') is not True:
             raise ValueError('Superuser debe tener is_superuser=True.')
 
-        return self.create_user(email, username, first_name, last_name, rut, password, **extra_fields)
+        return self.create_user(email, username, first_name, last_name, rut, password, password2, **extra_fields)
 
 
 rut_validator = RegexValidator(
