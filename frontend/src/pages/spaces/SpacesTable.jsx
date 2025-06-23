@@ -150,13 +150,17 @@ const SpacesTable = () => {
             {/* Formulario para crear o editar espacio */}
             {showForm && (
                 <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start pt-20 z-50">
-                    <div className="bg-white dark:bg-[#1f1f1f] p-6 rounded-lg shadow-md w-full max-w-xl relative">
-                        <button
-                            onClick={() => setShowForm(true)}
-                            className="flex items-center gap-2 bg-yellow-400 text-black px-4 py-2 rounded hover:bg-yellow-500 transition font-semibold"
-                        >
-                            <FaPlus /> Nuevo espacio
-                        </button>
+                    <div className="bg-white dark:bg-[#1f1f1f] text-gray-800 dark:text-gray-100 p-6 rounded-lg shadow-md w-full max-w-xl relative transition-colors duration-300">
+                        <div className="flex justify-between items-center mb-4">
+                            <h2 className="text-lg font-bold">{t('button_create_space')}</h2>
+                            <button
+                                onClick={() => setShowForm(false)}
+                                className="text-red-500 hover:text-red-700 font-bold text-xl"
+                                title="Cerrar"
+                            >
+                                &times;
+                            </button>
+                        </div>
                         <SpacesForm onClose={() => setShowForm(false)} />
                     </div>
                 </div>
