@@ -1,6 +1,15 @@
 import React from 'react';
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
-import { Login, Register, useAuth, Dashboard, SpacesList, SpacesForm } from '.././index.js'
+import {
+  Login,
+  Register,
+  useAuth,
+  Dashboard,
+  SpacesList,
+  SpacesForm,
+  BranchesForm,
+  BranchesList
+} from '.././index.js'
 
 export default function AppRouter() {
   const { isAuthenticated, loading } = useAuth();
@@ -29,6 +38,15 @@ export default function AppRouter() {
         <Route
           path="/spaces/create"
           element={isAuthenticated ? <SpacesForm /> : <Navigate to="/spaces" />}
+        />
+
+        <Route
+          path="/branches"
+          element={isAuthenticated ? <BranchesList /> : <Navigate to="/spaces" />}
+        />
+        <Route
+          path="/branches/create"
+          element={isAuthenticated ? <BranchesForm /> : <Navigate to="/spaces" />}
         />
 
         <Route path="*" element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />} />

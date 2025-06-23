@@ -7,7 +7,7 @@ import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useTranslation } from 'react-i18next';
 
-const SpacesTable = () => {
+const BranchesTable = () => {
     const { t } = useTranslation();
     const [showForm, setShowForm] = useState(false); // Controla el formulario
     const [book, setBook] = useState([]);
@@ -140,7 +140,7 @@ const SpacesTable = () => {
             />
 
             <div className="mt-4 text-right">
-                <Link to="/spaces/create">
+                <Link to="/branches/create">
                     <button className="bg-yellow-400 text-black p-3 rounded-md shadow hover:bg-yellow-500 transition flex items-center space-x-2">
                         <FaPlus />
                         <span>{t('button_create_space')}</span>
@@ -171,4 +171,4 @@ const SpacesTable = () => {
 };
 
 
-export default SpacesTable;
+export default BranchesTable;
