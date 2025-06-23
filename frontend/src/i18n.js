@@ -16,6 +16,7 @@ const resources = {
       title_space: "Espacios",
       listar: "No se encontraron resultados",
       buscador:"Buscar Espacios",
+      title_form_spaces: "Registrar Nuevo Espacio",
 
 
       // Nuevas secciones y etiquetas del Sidebar
@@ -46,6 +47,9 @@ const resources = {
       integrations_label: 'Integraciones',
       api_gateway: 'API Gateway',
       blog: 'Blog',
+      name_spaces:"Nombre Espacio",
+      placeholer_spaces: "Ingrese Espacio",
+      title_description: "Descripcion"
     },
   },
   en: {
@@ -89,6 +93,10 @@ const resources = {
       integrations_label: 'Integrations',
       api_gateway: 'API Gateway',
       blog: 'Blog',
+      title_form_spaces: "Create New Spaces",
+      name_spaces: "Name Spaces",
+      placeholer_spaces: "Enter Spaces",
+      title_description: "Description"
     },
   },
 };
