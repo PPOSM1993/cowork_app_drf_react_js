@@ -3,7 +3,7 @@ from .views import *
 
 urlpatterns = [
     # Spaces
-    path('spaces/', SpaceListCreateView.as_view(), name='space-list-create'),
+    path('', SpaceListCreateView.as_view(), name='space-list-create'),
     path('spaces/<int:pk>/', SpaceRetrieveUpdateDestroyView.as_view(), name='space-detail'),
 
     # Availability
