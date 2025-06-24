@@ -46,9 +46,12 @@ export default function AppRouter() {
         />
         <Route
           path="/branches/create"
-          element={isAuthenticated ? <BranchesForm /> : <Navigate to="/spaces" />}
+          element={isAuthenticated ? <BranchesForm /> : <Navigate to="/branches" />}
         />
-
+        <Route
+          path="/branches/edit/:id"
+          element={isAuthenticated ? <BranchesForm /> : <Navigate to="/branches" />}
+        />
         <Route path="*" element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />} />
 
       </Routes>

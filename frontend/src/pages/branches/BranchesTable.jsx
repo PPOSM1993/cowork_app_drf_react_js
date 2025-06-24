@@ -9,37 +9,88 @@ import { useTranslation } from 'react-i18next';
 
 const BranchesTable = () => {
     const { t } = useTranslation();
-    const [book, setBook] = useState([]);
+    const [branch, setBranch] = useState([]);
     const [filterText, setFilterText] = useState("");
     const [perPage, setPerPage] = useState(10);
     const navigate = useNavigate();
+    const [isDark, setIsDark] = useState(document.documentElement.classList.contains("dark"));
 
-    const fetchBook = async (q = "") => {
+    // Detecta cambios en el modo oscuro (por ejemplo, cuando el usuario cambia el tema)
+    useEffect(() => {
+        const observer = new MutationObserver(() => {
+            setIsDark(document.documentElement.classList.contains("dark"));
+        });
+
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class'],
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
+    const customStyles = {
+        table: {
+            style: {
+                backgroundColor: isDark ? "#121212" : "#ffffff",
+            },
+        },
+        rows: {
+            style: {
+                backgroundColor: isDark ? "#121212" : "#ffffff",
+                color: isDark ? "#e5e5e5" : "#111827",
+            },
+        },
+        headRow: {
+            style: {
+                backgroundColor: isDark ? "#121212" : "#f3f4f6",
+                color: isDark ? "#ffffff" : "#111827",
+            },
+        },
+        headCells: {
+            style: {
+                color: isDark ? "#f9f9f9" : "#121212",
+                fontWeight: "bold",
+            },
+        },
+        cells: {
+            style: {
+                color: isDark ? "#121212" : "#121212",
+            },
+        },
+        pagination: {
+            style: {
+                backgroundColor: isDark ? "#121212" : "#ffffff",
+                color: isDark ? "#ffffff" : "#111827",
+            },
+        },
+    };
+
+    const fetchBranch = async (q = "") => {
         const token = localStorage.getItem("access_token");
         const res = await axios.get(`http://localhost:8000/api/branches/search/?q=${q}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
-        setBook(res.data);
+        setBranch(res.data);
     };
 
     useEffect(() => {
-        fetchBook();
+        fetchBranch();
     }, []);
 
     useEffect(() => {
         const delayDebounce = setTimeout(() => {
-            fetchBook(filterText);
+            fetchBranch(filterText);
         }, 300);
         return () => clearTimeout(delayDebounce);
     }, [filterText]);
 
-
     const handleDelete = async (id) => {
         const confirm = await Swal.fire({
             title: "¿Estás seguro?",
-            text: "Este cliente será eliminado permanentemente.",
+            text: "Esta Sucursal será eliminada permanentemente.",
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Sí, eliminar",
@@ -57,7 +108,7 @@ const BranchesTable = () => {
                     },
                 });
                 Swal.fire("Eliminado", "Sucursal eliminada correctamente.", "success");
-                fetchBook();
+                fetchBranch();
             } catch (error) {
                 console.error("Error al eliminar:", error);
                 Swal.fire("Error", "No se pudo eliminar la Sucursal.", "error");
@@ -66,26 +117,28 @@ const BranchesTable = () => {
     };
 
     const handleEdit = (id) => {
-        navigate(`/spaces/edit/${id}`);
+        navigate(`/branches/edit/${id}`);
     };
 
     const columns = [
-
         {
             name: "Sucursal",
-            selector: row => row.title,
+            selector: row => row.name,
             sortable: true,
         },
-
         {
             name: "Direccion",
-            selector: row => row.author.name,
+            selector: row => row.address,
             sortable: true,
         },
-
         {
             name: "Telefono",
-            selector: row => row.isbn,
+            selector: row => row.phone,
+            sortable: true,
+        },
+        {
+            name: "Email",
+            selector: row => row.email,
             sortable: true,
         },
         {
@@ -109,13 +162,11 @@ const BranchesTable = () => {
                 </div>
             ),
             ignoreRowClick: true,
-            //allowOverflow: false,
-            //button: true,
         },
     ];
 
     return (
-        <div className="p-4 bg-white dark:bg-[#121212] text-gray-800 dark:text-gray-100 rounded-xl shadow transition-colors duration-300">
+        <div className="p-4 bg-white dark:bg-[#121212] text-gray-800 dark:text-gray-100 rounded-xl shadow transition-colors duration-300 border border-none">
             <input
                 type="text"
                 placeholder={t('buscador')}
@@ -126,7 +177,7 @@ const BranchesTable = () => {
 
             <DataTable
                 columns={columns}
-                data={book}
+                data={branch}
                 pagination
                 paginationPerPage={perPage}
                 paginationRowsPerPageOptions={[5, 10, 25, 50, 100]}
@@ -135,7 +186,8 @@ const BranchesTable = () => {
                 responsive
                 striped
                 noDataComponent={t('listar')}
-                className="min-w-full table-auto border border-none text-sm sm:text-base"
+                customStyles={customStyles}
+                className={`${isDark ? "text-white" : "text-black"}`}
             />
 
             <div className="mt-4 text-right">
@@ -146,11 +198,8 @@ const BranchesTable = () => {
                     </button>
                 </Link>
             </div>
-
-
         </div>
     );
 };
-
 
 export default BranchesTable;
