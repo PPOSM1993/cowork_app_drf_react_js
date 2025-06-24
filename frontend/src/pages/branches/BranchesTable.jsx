@@ -9,7 +9,6 @@ import { useTranslation } from 'react-i18next';
 
 const BranchesTable = () => {
     const { t } = useTranslation();
-    const [showForm, setShowForm] = useState(false); // Controla el formulario
     const [book, setBook] = useState([]);
     const [filterText, setFilterText] = useState("");
     const [perPage, setPerPage] = useState(10);
@@ -17,7 +16,7 @@ const BranchesTable = () => {
 
     const fetchBook = async (q = "") => {
         const token = localStorage.getItem("access_token");
-        const res = await axios.get(`http://localhost:8000/api/spaces/search/?q=${q}`, {
+        const res = await axios.get(`http://localhost:8000/api/branches/search/?q=${q}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
@@ -52,16 +51,16 @@ const BranchesTable = () => {
         if (confirm.isConfirmed) {
             try {
                 const token = localStorage.getItem("access_token");
-                await axios.delete(`http://localhost:8000/api/books/delete/${id}/`, {
+                await axios.delete(`http://localhost:8000/api/branches/delete/${id}/`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                Swal.fire("Eliminado", "Libro eliminado correctamente.", "success");
+                Swal.fire("Eliminado", "Sucursal eliminada correctamente.", "success");
                 fetchBook();
             } catch (error) {
                 console.error("Error al eliminar:", error);
-                Swal.fire("Error", "No se pudo eliminar el libro.", "error");
+                Swal.fire("Error", "No se pudo eliminar la Sucursal.", "error");
             }
         }
     };
@@ -73,19 +72,19 @@ const BranchesTable = () => {
     const columns = [
 
         {
-            name: "Libros",
+            name: "Sucursal",
             selector: row => row.title,
             sortable: true,
         },
 
         {
-            name: "Autor",
+            name: "Direccion",
             selector: row => row.author.name,
             sortable: true,
         },
 
         {
-            name: "ISBN",
+            name: "Telefono",
             selector: row => row.isbn,
             sortable: true,
         },
@@ -120,7 +119,7 @@ const BranchesTable = () => {
             <input
                 type="text"
                 placeholder={t('buscador')}
-                className="w-full max-w-md px-4 py-2 mb-4 border rounded-xl bg-white dark:bg-[#2a2a2a] dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full max-w-md px-4 py-2 mb-4 border border-none rounded-xl bg-white dark:bg-[#121212] dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 value={filterText}
                 onChange={(e) => setFilterText(e.target.value)}
             />
@@ -136,35 +135,18 @@ const BranchesTable = () => {
                 responsive
                 striped
                 noDataComponent={t('listar')}
-                className="min-w-full table-auto border border-gray-200 text-sm sm:text-base"
+                className="min-w-full table-auto border border-none text-sm sm:text-base"
             />
 
             <div className="mt-4 text-right">
                 <Link to="/branches/create">
                     <button className="bg-yellow-400 text-black p-3 rounded-md shadow hover:bg-yellow-500 transition flex items-center space-x-2">
                         <FaPlus />
-                        <span>{t('button_create_space')}</span>
+                        <span>{t('button_new_branches')}</span>
                     </button>
                 </Link>
             </div>
-            {/* Formulario para crear o editar espacio */}
-            {showForm && (
-                <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start pt-20 z-50">
-                    <div className="bg-white dark:bg-[#1f1f1f] text-gray-800 dark:text-gray-100 p-6 rounded-lg shadow-md w-full max-w-xl relative transition-colors duration-300">
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-lg font-bold">{t('button_create_space')}</h2>
-                            <button
-                                onClick={() => setShowForm(false)}
-                                className="text-red-500 hover:text-red-700 font-bold text-xl"
-                                title="Cerrar"
-                            >
-                                &times;
-                            </button>
-                        </div>
-                        <SpacesForm onClose={() => setShowForm(false)} />
-                    </div>
-                </div>
-            )}
+
 
         </div>
     );
