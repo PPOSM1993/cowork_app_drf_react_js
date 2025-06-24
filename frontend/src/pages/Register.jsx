@@ -96,7 +96,7 @@ const Register = () => {
                                 placeholder="Nombre"
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-white"
+                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-black"
                             />
                         </div>
                         <div>
@@ -109,7 +109,7 @@ const Register = () => {
                                 placeholder="Apellido"
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-white" />
+                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-black" />
                         </div>
 
 
@@ -123,7 +123,7 @@ const Register = () => {
                                 placeholder="Usuario"
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-white" />
+                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-black" />
                         </div>
 
 
@@ -138,7 +138,7 @@ const Register = () => {
                                 value={formData.email}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-white"
+                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-black"
                             />
                         </div>
 
@@ -148,7 +148,7 @@ const Register = () => {
                             </label>
                             <input
                                 name="rut"
-                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-white"
+                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-black"
                                 type="text"
                                 placeholder="RUT (12345678-9)"
                                 onChange={handleChange}
@@ -167,7 +167,7 @@ const Register = () => {
                                 value={formData.password}
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-white"
+                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-black"
                             />
                         </div>
 
@@ -181,7 +181,7 @@ const Register = () => {
                                 placeholder="Confirmar contraseña"
                                 onChange={handleChange}
                                 required
-                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-white"
+                                className="w-full px-4 py-2 mt-1 border border-gray-300 rounded-lg focus:ring-yellow-500 focus:border-yellow-500 text-black"
                             />
                         </div>
 

@@ -17,6 +17,7 @@ const resources = {
       listar: "No se encontraron resultados",
       buscador:"Buscar Espacios",
       title_form_spaces: "Registrar Nuevo Espacio",
+      save_branch: "Crear Sucursal",
 
 
       // Nuevas secciones y etiquetas del Sidebar
@@ -28,6 +29,9 @@ const resources = {
       integrations: 'Integraciones',
       content: 'Contenido',
       button_create_space: " Crear Espacio",
+      button_new_branches: "Crear Sucursal",
+      email_branches: "Email",
+      placeholder_email_branches:"Ingrese Email",
 
       branches: 'Sucursales',
       resources: 'Recursos',
@@ -49,7 +53,11 @@ const resources = {
       blog: 'Blog',
       name_spaces:"Nombre Espacio",
       placeholer_spaces: "Ingrese Espacio",
-      title_description: "Descripcion"
+      title_description: "Descripcion",
+      cancel: " Cancelar",
+      address_spaces:"Direccion",
+      placeholder_address: "Ingrese Direccion",
+      title_branches:"Nueva Sucursal",
     },
   },
   en: {
@@ -74,6 +82,9 @@ const resources = {
       button_create_space: " Create Space",
       listar:"No results found",
       buscador:"Searching Spaces",
+      button_new_branches:"Create Branches",
+      email_branches: "Email",
+      placeholder_email_branches:"Enter Email",
 
       branches: 'Branches',
       resources: 'Resources',
@@ -96,7 +107,13 @@ const resources = {
       title_form_spaces: "Create New Spaces",
       name_spaces: "Name Spaces",
       placeholer_spaces: "Enter Spaces",
-      title_description: "Description"
+      title_description: "Description",
+      save_branch:"Save Branch",
+      cancel: "Cancel",
+      address_spaces:"Address",
+      placeholder_address: "Enter Address",
+      title_branches:"New Branch"
+      
     },
   },
 };

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Header, Sidebar, SpacesTable, SpacesForm } from "../../index";
+import { Header, Sidebar, BranchesTable } from "../../index";
 import { motion } from "framer-motion";
 import { useTranslation } from 'react-i18next';
 
@@ -21,26 +21,9 @@ const BranchesList = () => {
           className="flex-1 overflow-y-auto p-6"
         >
           <div className="flex justify-between items-center mb-6">
-            <h1 className="text-2xl font-bold">{t('title_space')}</h1>
+            <h1 className="text-2xl font-bold">{t('branches')}</h1>
           </div>
-
-          {/* Tabla con listado de espacios */}
-          <SpacesTable />
-
-          {/* Formulario para crear o editar espacio */}
-          {showForm && (
-            <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start pt-20 z-50">
-              <div className="bg-white dark:bg-[#1f1f1f] p-6 rounded-lg shadow-md w-full max-w-xl relative">
-                <button
-                  onClick={() => setShowForm(false)}
-                  className="absolute top-2 right-3 text-gray-600 dark:text-gray-300 hover:text-red-500 text-lg"
-                >
-                  ×
-                </button>
-                <SpacesForm onClose={() => setShowForm(false)} />
-              </div>
-            </div>
-          )}
+          <BranchesTable />
         </motion.main>
       </div>
     </div>
