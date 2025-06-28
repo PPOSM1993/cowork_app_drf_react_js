@@ -19,3 +19,9 @@
 .hide-scrollbar::-webkit-scrollbar {
   display: none; /* Chrome, Safari, Opera */
 }
+
+/* Cambiar color de las flechas en modo dark */
+:root.dark .rdt_TableCol_Sortable span svg {
+  stroke: white !important;
+  fill: white !important;
+}

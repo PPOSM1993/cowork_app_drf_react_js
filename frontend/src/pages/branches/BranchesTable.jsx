@@ -15,7 +15,6 @@ const BranchesTable = () => {
     const navigate = useNavigate();
     const [isDark, setIsDark] = useState(document.documentElement.classList.contains("dark"));
 
-    // Detecta cambios en el modo oscuro (por ejemplo, cuando el usuario cambia el tema)
     useEffect(() => {
         const observer = new MutationObserver(() => {
             setIsDark(document.documentElement.classList.contains("dark"));
@@ -29,42 +28,45 @@ const BranchesTable = () => {
         return () => observer.disconnect();
     }, []);
 
+
     const customStyles = {
         table: {
             style: {
                 backgroundColor: isDark ? "#121212" : "#ffffff",
+                borderRadius: 0,
+            },
+        },
+        headRow: {
+            style: {
+                backgroundColor: isDark ? "#121212" : "#f3f4f6", // mismo fondo que fila 3
+            },
+        },
+        headCells: {
+            style: {
+                color: isDark ? "#ffffff" : "#000000", // texto blanco en dark
+                fontWeight: "bold",
             },
         },
         rows: {
             style: {
                 backgroundColor: isDark ? "#121212" : "#ffffff",
-                color: isDark ? "#e5e5e5" : "#111827",
-            },
-        },
-        headRow: {
-            style: {
-                backgroundColor: isDark ? "#121212" : "#f3f4f6",
-                color: isDark ? "#ffffff" : "#111827",
-            },
-        },
-        headCells: {
-            style: {
-                color: isDark ? "#f9f9f9" : "#121212",
-                fontWeight: "bold",
+                color: "#000000", // texto negro por defecto
             },
         },
         cells: {
             style: {
-                color: isDark ? "#121212" : "#121212",
+                color: "#000000", // override en fila 3 más abajo
             },
         },
         pagination: {
             style: {
                 backgroundColor: isDark ? "#121212" : "#ffffff",
-                color: isDark ? "#ffffff" : "#111827",
+                color: isDark ? "#ffffff" : "#000000",
             },
         },
     };
+
+
 
     const fetchBranch = async (q = "") => {
         const token = localStorage.getItem("access_token");
@@ -127,12 +129,12 @@ const BranchesTable = () => {
             sortable: true,
         },
         {
-            name: "Direccion",
+            name: "Dirección",
             selector: row => row.address,
             sortable: true,
         },
         {
-            name: "Telefono",
+            name: "Teléfono",
             selector: row => row.phone,
             sortable: true,
         },
@@ -166,14 +168,15 @@ const BranchesTable = () => {
     ];
 
     return (
-        <div className="p-4 bg-white dark:bg-[#121212] text-gray-800 dark:text-gray-100 rounded-xl shadow transition-colors duration-300 border border-none">
+        <div className="p-4 bg-white dark:bg-[#121212] text-gray-800 dark:text-gray-100 shadow transition-colors duration-300 border">
             <input
                 type="text"
                 placeholder={t('buscador')}
-                className="w-full max-w-md px-4 py-2 mb-4 border border-none rounded-xl bg-white dark:bg-[#121212] dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full max-w-md px-4 py-2 mb-4 border border-none bg-white dark:bg-[#121212] dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 value={filterText}
                 onChange={(e) => setFilterText(e.target.value)}
             />
+
 
             <DataTable
                 columns={columns}
@@ -185,14 +188,24 @@ const BranchesTable = () => {
                 highlightOnHover
                 responsive
                 striped
-                noDataComponent={t('listar')}
+                noDataComponent={t("listar")}
                 customStyles={customStyles}
-                className={`${isDark ? "text-white" : "text-black"}`}
+                conditionalRowStyles={[
+                    {
+                        when: (row, index) => isDark && index === 2, // tercera fila
+                        style: {
+                            color: "#ffffff", // texto blanco
+                            backgroundColor: "#121212", // asegura fondo igual que cabecera
+                        },
+                    },
+                ]}
+                className="text-black"
             />
+
 
             <div className="mt-4 text-right">
                 <Link to="/branches/create">
-                    <button className="bg-yellow-400 text-black p-3 rounded-md shadow hover:bg-yellow-500 transition flex items-center space-x-2">
+                    <button className="bg-yellow-400 text-black p-3 shadow hover:bg-yellow-500 transition flex items-center space-x-2">
                         <FaPlus />
                         <span>{t('button_new_branches')}</span>
                     </button>
