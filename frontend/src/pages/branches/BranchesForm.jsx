@@ -22,8 +22,8 @@ const BranchesForm = () => {
     name: "",
     address: "",
     email: "",
-    region: "",
-    city: "",
+    region_id: "",
+    city_id: "",
     phone: "",
     image: null,
   });
@@ -75,8 +75,16 @@ const BranchesForm = () => {
       const token = localStorage.getItem("access_token");
       const formDataToSend = new FormData();
 
-      for (const key in formData) {
-        formDataToSend.append(key, formData[key]);
+      // Asegura que las claves coincidan con lo que espera DRF
+      formDataToSend.append("name", formData.name);
+      formDataToSend.append("address", formData.address);
+      formDataToSend.append("email", formData.email);
+      formDataToSend.append("phone", formData.phone);
+      formDataToSend.append("region_id", formData.region_id);
+      formDataToSend.append("city_id", formData.city_id);
+
+      if (formData.image) {
+        formDataToSend.append("image", formData.image);
       }
 
       const config = {
@@ -102,6 +110,7 @@ const BranchesForm = () => {
       Swal.fire("Error", errorMsg, "error");
     }
   };
+
 
   return (
     <div className="flex h-screen bg-white text-gray-800 dark:bg-[#121212] dark:text-gray-100 transition-colors duration-300">
