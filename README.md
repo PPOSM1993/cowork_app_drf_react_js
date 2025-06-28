@@ -1,1 +1,1 @@
-# cowork_app_drf_react_js
+# Cowork App ERP Style - Djagno Rest Framework, ReactJS, TailwindCSS, PostgreSQL
