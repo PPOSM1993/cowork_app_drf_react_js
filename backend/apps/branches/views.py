@@ -51,7 +51,7 @@ def DeleteBranches(request, pk):
 def SearchBranch(request):
     query = request.GET.get('q', '')
     if query:
-        customers = Branch.objects.filter(
+        branches = Branch.objects.filter(
             name__icontains=query
         ) | Branch.objects.filter(
             address__icontains=query  
@@ -72,7 +72,7 @@ def BranchesDetail(request, pk):
     try:
         branch = Branch.objects.get(pk=pk)
     except Branch.DoesNotExist:
-        return Response({"error": "Rama no encontrada"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"error": "Sucursal no encontrada"}, status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
         serializer = BranchSerializer(branch)
