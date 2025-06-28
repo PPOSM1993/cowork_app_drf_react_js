@@ -6,7 +6,6 @@ import Swal from "sweetalert2";
 import { CiCirclePlus } from "react-icons/ci";
 import { ImCancelCircle } from "react-icons/im";
 import axios from "axios";
-import { FaSave } from "react-icons/fa";
 
 const BranchesForm = () => {
   const { t } = useTranslation();
@@ -39,9 +38,7 @@ const BranchesForm = () => {
         try {
           const token = localStorage.getItem("access_token");
           const res = await axios.get(`http://localhost:8000/api/branches/edit/${id}/`, {
-            headers: {
-              Authorization: `Bearer ${token}`,
-            },
+            headers: { Authorization: `Bearer ${token}` },
           });
           setFormData(res.data);
           if (res.data.image) {
@@ -71,17 +68,21 @@ const BranchesForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (isNaN(parseInt(formData.region_id)) || isNaN(parseInt(formData.city_id))) {
+      return Swal.fire("Error", "Debes seleccionar una región y una ciudad válidas.", "error");
+    }
+
     try {
       const token = localStorage.getItem("access_token");
       const formDataToSend = new FormData();
 
-      // Asegura que las claves coincidan con lo que espera DRF
       formDataToSend.append("name", formData.name);
       formDataToSend.append("address", formData.address);
       formDataToSend.append("email", formData.email);
       formDataToSend.append("phone", formData.phone);
-      formDataToSend.append("region_id", formData.region_id);
-      formDataToSend.append("city_id", formData.city_id);
+      formDataToSend.append("region_id", parseInt(formData.region_id));
+      formDataToSend.append("city_id", parseInt(formData.city_id));
 
       if (formData.image) {
         formDataToSend.append("image", formData.image);
@@ -110,7 +111,6 @@ const BranchesForm = () => {
       Swal.fire("Error", errorMsg, "error");
     }
   };
-
 
   return (
     <div className="flex h-screen bg-white text-gray-800 dark:bg-[#121212] dark:text-gray-100 transition-colors duration-300">
@@ -175,8 +175,8 @@ const BranchesForm = () => {
             <div>
               <label className="block text-sm font-medium">Región</label>
               <select
-                name="region"
-                value={formData.region || ""}
+                name="region_id"
+                value={formData.region_id}
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border rounded-md border-none focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-[#121212]"
               >
@@ -192,14 +192,14 @@ const BranchesForm = () => {
             <div>
               <label className="block text-sm font-medium">Ciudad</label>
               <select
-                name="city"
-                value={formData.city || ""}
+                name="city_id"
+                value={formData.city_id}
                 onChange={handleChange}
                 className="w-full mt-1 p-2 border rounded-md border-none focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-[#121212]"
               >
                 <option value="">Seleccione una ciudad</option>
                 {cities
-                  .filter((c) => c.fields.region === parseInt(formData.region))
+                  .filter((c) => c.fields.region === parseInt(formData.region_id))
                   .map((c) => (
                     <option key={c.pk} value={c.pk}>
                       {c.fields.name}
@@ -214,7 +214,11 @@ const BranchesForm = () => {
                 type="file"
                 name="image"
                 accept="image/*"
-                onChange={handleImageChange}
+                onChange={(e) => {
+                  const file = e.target.files[0];
+                  setFormData(prev => ({ ...prev, image: file }));
+                  if (file) setPreviewImage(URL.createObjectURL(file));
+                }}
                 className="w-full p-2 bg-white border border-none rounded-md dark:bg-[#121212] dark:text-white focus:ring-yellow-500"
               />
               {previewImage && (
