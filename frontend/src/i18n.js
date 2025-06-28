@@ -18,6 +18,7 @@ const resources = {
       buscador:"Buscar Espacios",
       title_form_spaces: "Registrar Nuevo Espacio",
       save_branch: "Crear Sucursal",
+      phone:'Numero de Telefono',
 
 
       // Nuevas secciones y etiquetas del Sidebar
@@ -32,6 +33,8 @@ const resources = {
       button_new_branches: "Crear Sucursal",
       email_branches: "Email",
       placeholder_email_branches:"Ingrese Email",
+      placeholder_phone: 'Ingrese Numero de Telefono',
+      upload_image:'Imagen',
 
       branches: 'Sucursales',
       resources: 'Recursos',
@@ -71,6 +74,7 @@ const resources = {
       config: 'Settings',
       profile: 'Profile',
       title_space: 'Spaces',
+      phone:'Phone Number',
 
       general: 'General',
       users: 'Users',
@@ -85,6 +89,8 @@ const resources = {
       button_new_branches:"Create Branches",
       email_branches: "Email",
       placeholder_email_branches:"Enter Email",
+      placeholder_phone:'Enter Phone Number',
+      upload_image: 'Image',
 
       branches: 'Branches',
       resources: 'Resources',
