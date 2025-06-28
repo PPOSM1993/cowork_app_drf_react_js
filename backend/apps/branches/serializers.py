@@ -32,21 +32,27 @@ class BranchSerializer(serializers.ModelSerializer):
     class Meta:
         model = Branch
         fields = [
-            'id', 
-            'name', 
-            'address', 
-            'phone', 
-            'email', 
-            'image',            
-            'region', 
+            'id',
+            'name',
+            'address',
+            'phone',
+            'email',
+            'image',
+            'is_active',
+            'opening_hours',
+            'latitude',
+            'longitude',
+            'notes',
+            'slug',
+            'region',
             'region_id',
-            'city', 
+            'city',
             'city_id',
             'created_at',
-            'updated_at'
+            'updated_at',
         ]
 
-        read_only_fields = ['id', 'created_at', 'updated_at']
+        read_only_fields = ['id', 'slug', 'created_at', 'updated_at']
 
 
         def validate_email(self, value):
