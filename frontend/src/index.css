@@ -25,3 +25,7 @@
   stroke: white !important;
   fill: white !important;
 }
+
+.input {
+  @apply w-full mt-1 p-2 border rounded-md border-none focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-[#121212];
+}

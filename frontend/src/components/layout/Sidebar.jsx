@@ -14,7 +14,6 @@ import { useTranslation } from 'react-i18next';
 const Sidebar = ({ isOpen }) => {
   const { t } = useTranslation();
 
-  // Estado para manejar qué secciones están abiertas
   const [openSections, setOpenSections] = useState({});
 
   const toggleSection = (title) => {
@@ -25,63 +24,66 @@ const Sidebar = ({ isOpen }) => {
   };
 
   const sections = [
-
     {
       title: t('general'),
-      icon: <MdHome />, // ⬅️ ícono para la sección
+      icon: <MdHome size={22} />, // Tamaño aumentado
       items: [
-        { path: '/dashboard', icon: <MdDashboard />, label: t('dashboard') },
-        { path: '/branches', icon: <MdLocationCity />, label: t('branches') },
-        { path: '/resources', icon: <MdSettings />, label: t('resources') },
-        { path: '/spaces', icon: <MdSettings />, label: t('spaces') }
-        ,
+        { path: '/dashboard', icon: <MdDashboard size={20} />, label: t('dashboard') },
+        { path: '/branches', icon: <MdLocationCity size={20} />, label: t('branches') },
+        { path: '/resources', icon: <MdSettings size={20} />, label: t('resources') },
+        { path: '/spaces', icon: <MdSettings size={20} />, label: t('spaces') },
       ],
     },
-
     {
       title: t('users'),
+      icon: <MdPeople size={22} />,
       items: [
-        { path: '/profiles', icon: <MdGroup />, label: t('profiles') },
-        { path: '/auth', icon: <MdPeople />, label: t('authentication') },
-        { path: '/identity', icon: <MdVerified />, label: t('identity_verification') },
-        { path: '/referrals', icon: <MdPeople />, label: t('referrals') },
+        { path: '/profiles', icon: <MdGroup size={20} />, label: t('profiles') },
+        { path: '/auth', icon: <MdPeople size={20} />, label: t('authentication') },
+        { path: '/identity', icon: <MdVerified size={20} />, label: t('identity_verification') },
+        { path: '/referrals', icon: <MdPeople size={20} />, label: t('referrals') },
       ],
     },
     {
       title: t('business'),
+      icon: <MdBusiness size={22} />,
       items: [
-        { path: '/reservations', icon: <MdEventNote />, label: t('reservations') },
-        { path: '/payments', icon: <MdPayment />, label: t('payments') },
-        { path: '/memberships', icon: <MdGroup />, label: t('memberships') },
-        { path: '/reports', icon: <MdBarChart />, label: t('reports') },
+        { path: '/reservations', icon: <MdEventNote size={20} />, label: t('reservations') },
+        { path: '/payments', icon: <MdPayment size={20} />, label: t('payments') },
+        { path: '/memberships', icon: <MdGroup size={20} />, label: t('memberships') },
+        { path: '/reports', icon: <MdBarChart size={20} />, label: t('reports') },
       ],
     },
     {
       title: t('communication'),
+      icon: <MdChat size={22} />,
       items: [
-        { path: '/chat', icon: <MdChat />, label: t('chat') },
-        { path: '/notifications', icon: <MdNotifications />, label: t('notifications') },
+        { path: '/chat', icon: <MdChat size={20} />, label: t('chat') },
+        { path: '/notifications', icon: <MdNotifications size={20} />, label: t('notifications') },
       ],
     },
     {
       title: t('interaction'),
+      icon: <MdReviews size={22} />,
       items: [
-        { path: '/reviews', icon: <MdReviews />, label: t('reviews') },
-        { path: '/support', icon: <MdSupport />, label: t('support') },
-        { path: '/recommendations', icon: <MdPeople />, label: t('recommendations') },
+        { path: '/reviews', icon: <MdReviews size={20} />, label: t('reviews') },
+        { path: '/support', icon: <MdSupport size={20} />, label: t('support') },
+        { path: '/recommendations', icon: <MdPeople size={20} />, label: t('recommendations') },
       ],
     },
     {
       title: t('integrations'),
+      icon: <MdIntegrationInstructions size={24} />,
       items: [
-        { path: '/integrations', icon: <MdIntegrationInstructions />, label: t('integrations') },
-        { path: '/api-gateway', icon: <MdApi />, label: t('api_gateway') },
+        { path: '/integrations', icon: <MdIntegrationInstructions size={20} />, label: t('integrations') },
+        { path: '/api-gateway', icon: <MdApi size={20} />, label: t('api_gateway') },
       ],
     },
     {
       title: t('content'),
+      icon: <MdArticle size={22} />,
       items: [
-        { path: '/blog', icon: <MdArticle />, label: t('blog') },
+        { path: '/blog', icon: <MdArticle size={20} />, label: t('blog') },
       ],
     },
   ];
@@ -96,19 +98,26 @@ const Sidebar = ({ isOpen }) => {
           <img src={logo} alt="Logo" />
         </div>
 
-        {sections.map(({ title, items }) => {
+        {sections.map(({ title, items, icon }) => {
           const isOpenSection = openSections[title];
 
           return (
             <div key={title} className="mt-4">
-              {isOpen && (
+              {isOpen ? (
                 <button
                   onClick={() => toggleSection(title)}
                   className="w-full flex justify-between items-center text-gray-400 uppercase text-md px-2 mb-2 hover:text-yellow-300 transition"
                 >
-                  <span> {title}</span>
+                  <div className="flex items-center gap-3">
+                    {icon}
+                    <span>{title}</span>
+                  </div>
                   {isOpenSection ? <MdExpandLess size={20} /> : <MdExpandMore size={20} />}
                 </button>
+              ) : (
+                <div className="flex justify-center" title={title}>
+                  {icon}
+                </div>
               )}
 
               {isOpenSection && (
@@ -118,7 +127,8 @@ const Sidebar = ({ isOpen }) => {
                       key={path}
                       to={path}
                       className={({ isActive }) =>
-                        `flex items-center gap-3 px-2 py-2 rounded hover:bg-yellow-500/20 transition ${isActive ? 'bg-yellow-500/10' : ''
+                        `flex items-center gap-3 px-2 py-2 rounded hover:bg-yellow-500/20 transition ${
+                          isActive ? 'bg-yellow-500/10' : ''
                         }`
                       }
                     >
