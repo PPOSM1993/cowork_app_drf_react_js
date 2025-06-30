@@ -3,9 +3,9 @@ import { Sidebar, Header } from "../../index";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
+import axios from "axios";
 import { CiCirclePlus } from "react-icons/ci";
 import { ImCancelCircle } from "react-icons/im";
-import axios from "axios";
 
 const BranchesForm = () => {
   const { t } = useTranslation();
@@ -15,90 +15,90 @@ const BranchesForm = () => {
 
   const [regions, setRegions] = useState([]);
   const [cities, setCities] = useState([]);
-  const [previewImage, setPreviewImage] = useState(null);
 
   const [formData, setFormData] = useState({
     name: "",
     address: "",
-    email: "",
-    region_id: "",
-    city_id: "",
+    region: "",
+    city: "",
     phone: "",
+    email: "",
     image: null,
+    is_active: true,
+    opening_hours: "",
+    latitude: "",
+    longitude: "",
+    notes: "",
   });
 
   useEffect(() => {
-    axios.get("/data/regionesData.json").then(res => setRegions(res.data));
-    axios.get("/data/ciudadesData.json").then(res => setCities(res.data));
+    axios.get("/data/regionesData.json").then((res) => setRegions(res.data));
+    axios.get("/data/ciudadesData.json").then((res) => setCities(res.data));
   }, []);
 
   useEffect(() => {
     if (id) {
-      const fetchBranches = async () => {
+      const fetchBranch = async () => {
         try {
           const token = localStorage.getItem("access_token");
           const res = await axios.get(`http://localhost:8000/api/branches/edit/${id}/`, {
             headers: { Authorization: `Bearer ${token}` },
           });
           setFormData(res.data);
-          if (res.data.image) {
-            setPreviewImage(`http://localhost:8000${res.data.image}`);
-          }
         } catch (error) {
-          console.error("Error al cargar Sucursal:", error);
-          Swal.fire("Error", "No se pudo cargar la Sucursal.", "error");
+          console.error("Error al cargar sucursal:", error);
+          Swal.fire("Error", "No se pudo cargar la sucursal.", "error");
         }
       };
-      fetchBranches();
+      fetchBranch();
     }
   }, [id]);
 
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
-    setFormData(prev => ({ ...prev, image: file }));
-    if (file) {
-      setPreviewImage(URL.createObjectURL(file));
+    const { name, value, type, checked, files } = e.target;
+    if (type === "checkbox") {
+      setFormData((prev) => ({ ...prev, [name]: checked }));
+    } else if (type === "file") {
+      setFormData((prev) => ({ ...prev, [name]: files[0] }));
+    } else {
+      setFormData((prev) => ({ ...prev, [name]: value }));
     }
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    const token = localStorage.getItem("access_token");
 
-    if (isNaN(parseInt(formData.region_id)) || isNaN(parseInt(formData.city_id))) {
-      return Swal.fire("Error", "Debes seleccionar una región y una ciudad válidas.", "error");
+    const formToSend = new FormData();
+    for (const key in formData) {
+      if (formData[key] !== null) {
+        formToSend.append(key, formData[key]);
+      }
     }
 
     try {
-      const token = localStorage.getItem("access_token");
-      const formDataToSend = new FormData();
-
-      formDataToSend.append("name", formData.name);
-      formDataToSend.append("address", formData.address);
-      formDataToSend.append("email", formData.email);
-      formDataToSend.append("phone", formData.phone);
-      formDataToSend.append("region_id", parseInt(formData.region_id));
-      formDataToSend.append("city_id", parseInt(formData.city_id));
-
-      if (formData.image) {
-        formDataToSend.append("image", formData.image);
-      }
-
-      const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
-      };
-
       if (id) {
-        await axios.put(`http://localhost:8000/api/branches/edit/${id}/`, formDataToSend, config);
+        await axios.put(
+          `http://localhost:8000/api/branches/edit/${id}/`,
+          formToSend,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
       } else {
-        await axios.post(`http://localhost:8000/api/branches/create/`, formDataToSend, config);
+        await axios.post(
+          "http://localhost:8000/api/branches/create/",
+          formToSend,
+          {
+            headers: {
+              Authorization: `Bearer ${token}`,
+              "Content-Type": "multipart/form-data",
+            },
+          }
+        );
       }
 
       Swal.fire({
@@ -113,74 +113,44 @@ const BranchesForm = () => {
   };
 
   return (
-    <div className="flex h-screen bg-white text-gray-800 dark:bg-[#121212] dark:text-gray-100 transition-colors duration-300">
+    <div className="flex h-screen bg-white dark:bg-[#121212] text-gray-800 dark:text-gray-100">
       <Sidebar isOpen={isSidebarOpen} />
       <div className="flex-1 flex flex-col">
         <Header toggleSidebar={() => setIsSidebarOpen(!isSidebarOpen)} />
+
         <main className="flex-1 overflow-y-auto p-6">
           <h1 className="text-2xl font-bold mb-6">{t("title_branches")}</h1>
 
-          <form onSubmit={handleSubmit} className="bg-white dark:bg-[#121212] p-6 rounded-lg shadow space-y-4">
+          <form onSubmit={handleSubmit} className="space-y-4">
+            {/* Name */}
             <div>
-              <label className="block mb-1 font-medium">{t("name_spaces")}</label>
+              <label className="block font-medium">{t("name_spaces")}</label>
               <input
-                type="text"
                 name="name"
                 value={formData.name}
                 onChange={handleChange}
+                className="input"
                 required
-                placeholder={t("placeholer_spaces")}
-                className="w-full p-2 border rounded-md border-none focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-[#121212]"
               />
             </div>
 
+            {/* Address */}
             <div>
-              <label className="block mb-1 font-medium">{t("address_spaces")}</label>
+              <label className="block font-medium">{t("address_spaces")}</label>
               <input
-                type="text"
                 name="address"
                 value={formData.address}
                 onChange={handleChange}
+                className="input"
                 required
-                placeholder={t("placeholder_address")}
-                className="w-full p-2 border rounded-md border-none focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-[#121212]"
               />
             </div>
 
+            {/* Region */}
             <div>
-              <label className="block mb-1 font-medium">{t("email_branches")}</label>
-              <input
-                type="email"
-                name="email"
-                value={formData.email}
-                onChange={handleChange}
-                required
-                placeholder={t("placeholder_email_branches")}
-                className="w-full p-2 border rounded-md border-none focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-[#121212]"
-              />
-            </div>
-
-            <div>
-              <label className="block mb-1 font-medium">{t("phone")}</label>
-              <input
-                type="text"
-                name="phone"
-                value={formData.phone}
-                onChange={handleChange}
-                placeholder={t("placeholder_phone")}
-                className="w-full p-2 border rounded-md border-none focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-[#121212]"
-              />
-            </div>
-
-            <div>
-              <label className="block text-sm font-medium">Región</label>
-              <select
-                name="region_id"
-                value={formData.region_id}
-                onChange={handleChange}
-                className="w-full mt-1 p-2 border rounded-md border-none focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-[#121212]"
-              >
-                <option value="">Seleccione una región</option>
+              <label className="block font-medium">Región</label>
+              <select name="region" value={formData.region || ""} onChange={handleChange} className="input">
+                <option value="">Seleccione región</option>
                 {regions.map((r) => (
                   <option key={r.pk} value={r.pk}>
                     {r.fields.name}
@@ -189,17 +159,13 @@ const BranchesForm = () => {
               </select>
             </div>
 
+            {/* City */}
             <div>
-              <label className="block text-sm font-medium">Ciudad</label>
-              <select
-                name="city_id"
-                value={formData.city_id}
-                onChange={handleChange}
-                className="w-full mt-1 p-2 border rounded-md border-none focus:outline-none focus:ring-2 focus:ring-yellow-500 dark:bg-[#121212]"
-              >
-                <option value="">Seleccione una ciudad</option>
+              <label className="block font-medium">Ciudad</label>
+              <select name="city" value={formData.city || ""} onChange={handleChange} className="input">
+                <option value="">Seleccione ciudad</option>
                 {cities
-                  .filter((c) => c.fields.region === parseInt(formData.region_id))
+                  .filter((c) => c.fields.region === parseInt(formData.region))
                   .map((c) => (
                     <option key={c.pk} value={c.pk}>
                       {c.fields.name}
@@ -208,47 +174,81 @@ const BranchesForm = () => {
               </select>
             </div>
 
+            {/* Phone */}
             <div>
-              <label className="block mb-1 font-medium">{t("upload_image")}</label>
-              <input
-                type="file"
-                name="image"
-                accept="image/*"
-                onChange={(e) => {
-                  const file = e.target.files[0];
-                  setFormData(prev => ({ ...prev, image: file }));
-                  if (file) setPreviewImage(URL.createObjectURL(file));
-                }}
-                className="w-full p-2 bg-white border border-none rounded-md dark:bg-[#121212] dark:text-white focus:ring-yellow-500"
-              />
-              {previewImage && (
-                <div className="mt-2">
-                  <p className="text-sm text-gray-500">{t("preview")}</p>
-                  <img
-                    src={previewImage}
-                    alt="Vista previa"
-                    className="w-48 h-auto mt-1 rounded shadow border border-gray-300"
-                  />
-                </div>
-              )}
+              <label className="block font-medium">Teléfono</label>
+              <input name="phone" value={formData.phone} onChange={handleChange} className="input" />
             </div>
 
-            <div className="flex justify-end gap-4">
+            {/* Email */}
+            <div>
+              <label className="block font-medium">Email</label>
+              <input type="email" name="email" value={formData.email} onChange={handleChange} className="input" />
+            </div>
+
+            {/* Imagen */}
+            <div>
+              <label className="block font-medium">Imagen</label>
+              <input type="file" name="image" onChange={handleChange} className="input" />
+            </div>
+
+            {/* Opening Hours */}
+            <div>
+              <label className="block font-medium">Horario de apertura</label>
+              <input
+                name="opening_hours"
+                value={formData.opening_hours}
+                onChange={handleChange}
+                className="input"
+              />
+            </div>
+
+            {/* Latitud */}
+            <div>
+              <label className="block font-medium">Latitud</label>
+              <input name="latitude" value={formData.latitude} onChange={handleChange} className="input" />
+            </div>
+
+            {/* Longitud */}
+            <div>
+              <label className="block font-medium">Longitud</label>
+              <input name="longitude" value={formData.longitude} onChange={handleChange} className="input" />
+            </div>
+
+            {/* Notas */}
+            <div>
+              <label className="block font-medium">Notas</label>
+              <textarea name="notes" value={formData.notes} onChange={handleChange} className="input" />
+            </div>
+
+            {/* Activo */}
+            <div className="flex items-center">
+              <input
+                type="checkbox"
+                name="is_active"
+                checked={formData.is_active}
+                onChange={handleChange}
+                className="mr-2"
+              />
+              <label className="font-medium">¿Sucursal activa?</label>
+            </div>
+
+            {/* Botones */}
+            <div className="flex justify-end gap-4 mt-6">
               <button
                 type="button"
                 onClick={() => navigate(-1)}
-                className="px-4 py-2 bg-red-500 p-4 rounded hover:bg-red-600 text-white flex items-center gap-2"
+                className="bg-red-500 text-white px-4 py-2 rounded flex items-center space-x-2"
               >
                 <ImCancelCircle />
-                {t("cancel")}
+                <span>{t("cancel")}</span>
               </button>
-
               <button
                 type="submit"
-                className="px-4 py-2 bg-yellow-400 p-4 rounded hover:bg-yellow-500 text-black flex items-center gap-2"
+                className="bg-yellow-400 text-black px-4 py-2 rounded flex items-center space-x-2"
               >
                 <CiCirclePlus />
-                {t("save_branch")}
+                <span>{t("save_branch")}</span>
               </button>
             </div>
           </form>
