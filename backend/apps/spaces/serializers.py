@@ -43,7 +43,7 @@ class SpaceSerializer(serializers.ModelSerializer):
         queryset=Branch.objects.all(), write_only=True, source='branch'
     )
 
-    availabilities = AvailabilitySerializer(many=True)
+    availabilities = AvailabilitySerializer(many=True, required=False)
 
     class Meta:
         model = Space
