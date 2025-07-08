@@ -95,14 +95,14 @@ const SpacesTable = () => {
                 <div className="flex items-center space-x-2 justify-end">
                     <button
                         onClick={() => handleEdit(row.id)}
-                        className="bg-yellow-500 text-black px-3 py-3 rounded text-xs sm:text-sm cursor-pointer hover:bg-yellow-600 transition"
+                        className="bg-yellow-500 text-black px-3 py-3 text-xs sm:text-sm cursor-pointer hover:bg-yellow-600 transition"
                         title="Editar"
                     >
                         <FaPen />
                     </button>
                     <button
                         onClick={() => handleDelete(row.id)}
-                        className="bg-red-500 text-white px-3 py-3 rounded text-xs sm:text-sm cursor-pointer hover:bg-red-600 transition"
+                        className="bg-red-500 text-white px-3 py-3 text-xs sm:text-sm cursor-pointer hover:bg-red-600 transition"
                         title="Eliminar"
                     >
                         <MdDelete />
@@ -116,11 +116,11 @@ const SpacesTable = () => {
     ];
 
     return (
-        <div className="p-4 bg-white dark:bg-[#121212] text-gray-800 dark:text-gray-100 rounded-xl shadow transition-colors duration-300">
+        <div className="p-4 bg-white dark:bg-[#121212] text-gray-800 dark:text-gray-100 rounded-sm shadow transition-colors duration-300">
             <input
                 type="text"
                 placeholder={t('buscador')}
-                className="w-full max-w-md px-4 py-2 mb-4 border rounded-xl bg-white dark:bg-[#2a2a2a] dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full max-w-md px-4 py-2 mb-4 border rounded-sm bg-white dark:bg-[#2a2a2a] dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 value={filterText}
                 onChange={(e) => setFilterText(e.target.value)}
             />
@@ -141,7 +141,7 @@ const SpacesTable = () => {
 
             <div className="mt-4 text-right">
                 <Link to="/spaces/create">
-                    <button className="bg-yellow-400 text-black p-3 rounded-md shadow hover:bg-yellow-500 transition flex items-center space-x-2">
+                    <button className="bg-yellow-400 text-black p-3 rounded-sm shadow hover:bg-yellow-500 transition flex items-center space-x-2">
                         <FaPlus />
                         <span>{t('button_create_space')}</span>
                     </button>
@@ -150,7 +150,7 @@ const SpacesTable = () => {
             {/* Formulario para crear o editar espacio */}
             {showForm && (
                 <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start pt-20 z-50">
-                    <div className="bg-white dark:bg-[#1f1f1f] text-gray-800 dark:text-gray-100 p-6 rounded-lg shadow-md w-full max-w-xl relative transition-colors duration-300">
+                    <div className="bg-white dark:bg-[#1f1f1f] text-gray-800 dark:text-gray-100 p-6 rounded-sm shadow-md w-full max-w-xl relative transition-colors duration-300">
                         <div className="flex justify-between items-center mb-4">
                             <h2 className="text-lg font-bold">{t('button_create_space')}</h2>
                             <button

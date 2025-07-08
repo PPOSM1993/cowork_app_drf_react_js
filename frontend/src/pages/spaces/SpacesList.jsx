@@ -30,7 +30,7 @@ const SpacesList = () => {
           {/* Formulario para crear o editar espacio */}
           {showForm && (
             <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start pt-20 z-50">
-              <div className="bg-white dark:bg-[#1f1f1f] p-6 rounded-lg shadow-md w-full max-w-xl relative">
+              <div className="bg-white dark:bg-[#1f1f1f] p-6 rounded-sm shadow-md w-full max-w-xl relative">
                 <button
                   onClick={() => setShowForm(false)}
                   className="absolute top-2 right-3 text-gray-600 dark:text-gray-300 hover:text-red-500 text-lg"
