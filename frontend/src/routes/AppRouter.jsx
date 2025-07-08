@@ -41,6 +41,11 @@ export default function AppRouter() {
         />
 
         <Route
+          path="/spaces/edit/:id"
+          element={isAuthenticated ? <SpacesForm /> : <Navigate to="/spaces" />}
+        />
+
+        <Route
           path="/branches"
           element={isAuthenticated ? <BranchesList /> : <Navigate to="/spaces" />}
         />

@@ -261,7 +261,7 @@ useEffect(() => {
                 className="bg-yellow-400 text-black px-4 py-2 rounded flex items-center space-x-2"
               >
                 <CiCirclePlus />
-                <span>{id ? "Actualizar" : "Crear"}</span>
+                <span>{t("save_branch")}</span>
               </button>
             </div>
           </form>
