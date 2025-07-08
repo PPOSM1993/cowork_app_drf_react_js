@@ -8,6 +8,10 @@ from .serializers import (
 )
 from apps.branches.models import Branch
 from .pagination import CustomPagination
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.permissions import IsAuthenticated
+from rest_framework.response import Response
+from rest_framework import generics, status, permissions, filters
 
 # -------------------------
 # SPACES
@@ -107,3 +111,53 @@ class AvailabilityUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
     queryset = Availability.objects.all()
     serializer_class = AvailabilitySerializer
     permission_classes = [permissions.IsAuthenticated]
+
+
+@api_view(['DELETE'])
+@permission_classes([IsAuthenticated])
+def DeleteSpaces(request, pk):
+    try:
+        space = Space.objects.get(pk=pk)
+    except Space.DoesNotExist:
+        return Response({"error": "Espacio no encontrado"}, status=status.HTTP_404_NOT_FOUND)
+
+    space.delete()
+    return Response({"message": "Espacio eliminado correctamente"}, status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['GET', 'PUT'])
+@permission_classes([IsAuthenticated])
+def SpacessDetail(request, pk):
+    try:
+        spaces = Space.objects.get(pk=pk)
+    except Space.DoesNotExist:
+        return Response({"error": "Espacio no encontrada"}, status=status.HTTP_404_NOT_FOUND)
+
+    if request.method == 'GET':
+        serializer = SpaceSerializer(spaces)
+        return Response(serializer.data)
+
+    elif request.method == 'PUT':
+        serializer = SpaceSerializer(spaces, data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            return Response(serializer.data)
+        return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def SearchSpace(request):
+    query = request.GET.get('q', '')
+    if query:
+        spaces = Branch.objects.filter(
+            name__icontains=query
+        ) | Space.objects.filter(
+            branch__icontains=query
+        ) | Space.objects.filter(
+            access_24_7__icontains=query
+        )
+    else:
+        spaces = Space.objects.all()
+
+    serializer = SpaceSerializer(spaces, many=True)
+    return Response(serializer.data)

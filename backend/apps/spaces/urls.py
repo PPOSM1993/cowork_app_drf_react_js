@@ -33,4 +33,7 @@ urlpatterns = [
     # BRANCHES (solo lectura aquí)
     # -------------------------
     path('branches/', BranchListView.as_view(), name='branch-list'),
+
+    path('delete/<int:pk>/', DeleteSpaces, name='delete-spaces'),
+    path('search/', SearchSpace, name='search-spaces'),
 ]
