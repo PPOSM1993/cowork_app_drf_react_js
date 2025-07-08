@@ -54,7 +54,7 @@ def SearchBranch(request):
         branches = Branch.objects.filter(
             name__icontains=query
         ) | Branch.objects.filter(
-            address__icontains=query  
+            address__icontains=query
         ) | Branch.objects.filter(
             email__icontains=query
         ) | Branch.objects.filter(

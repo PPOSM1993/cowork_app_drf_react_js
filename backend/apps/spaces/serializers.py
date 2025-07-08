@@ -1,7 +1,6 @@
 from rest_framework import serializers
-from .models import Space, Amenity, Tag, Branch, Availability
-from django.utils import timezone
-from datetime import time
+from .models import Space, Amenity, Tag, Availability
+from apps.branches.models import Branch
 
 class AmenitySerializer(serializers.ModelSerializer):
     class Meta:
@@ -44,7 +43,7 @@ class SpaceSerializer(serializers.ModelSerializer):
         queryset=Branch.objects.all(), write_only=True, source='branch'
     )
 
-    availabilities = AvailabilitySerializer(many=True, read_only=True)
+    availabilities = AvailabilitySerializer(many=True)
 
     class Meta:
         model = Space
@@ -65,16 +64,13 @@ class SpaceSerializer(serializers.ModelSerializer):
         read_only_fields = ['created_at', 'updated_at']
 
     def validate(self, data):
-        # Validar precios
         for price_field in ['price_per_hour', 'price_per_day', 'price_per_month']:
             if price_field in data and data[price_field] is not None and data[price_field] < 0:
                 raise serializers.ValidationError({price_field: "El precio no puede ser negativo"})
 
-        # Validar capacidad
         if 'capacity' in data and data['capacity'] <= 0:
             raise serializers.ValidationError({'capacity': "La capacidad debe ser mayor a cero"})
 
-        # Validar latitud y longitud
         lat = data.get('latitude')
         lon = data.get('longitude')
         if lat is not None and (lat < -90 or lat > 90):
@@ -83,3 +79,38 @@ class SpaceSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError({'longitude': "La longitud debe estar entre -180 y 180"})
 
         return data
+
+    def create(self, validated_data):
+        availabilities_data = validated_data.pop('availabilities', [])
+        amenities = validated_data.pop('amenities', [])
+        tags = validated_data.pop('tags', [])
+        
+        space = Space.objects.create(**validated_data)
+        space.amenities.set(amenities)
+        space.tags.set(tags)
+
+        for availability in availabilities_data:
+            Availability.objects.create(space=space, **availability)
+
+        return space
+
+    def update(self, instance, validated_data):
+        availabilities_data = validated_data.pop('availabilities', None)
+        amenities = validated_data.pop('amenities', None)
+        tags = validated_data.pop('tags', None)
+
+        for attr, value in validated_data.items():
+            setattr(instance, attr, value)
+        instance.save()
+
+        if amenities is not None:
+            instance.amenities.set(amenities)
+        if tags is not None:
+            instance.tags.set(tags)
+
+        if availabilities_data is not None:
+            instance.availabilities.all().delete()  # Limpiar horarios anteriores
+            for availability in availabilities_data:
+                Availability.objects.create(space=instance, **availability)
+
+        return instance
