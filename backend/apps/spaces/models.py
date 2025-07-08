@@ -1,5 +1,7 @@
 from django.db import models
-
+from django.utils import timezone
+from django.utils.text import slugify
+from apps.branches.models import Branch
 # Tipos de espacio
 class SpaceType(models.TextChoices):
     SHARED = 'shared', 'Espacio Compartido'
@@ -23,7 +25,7 @@ class Amenity(models.Model):
         return self.name
 
 # Sedes o branches (idealmente estaría en app branches, pero aquí por simplicidad)
-class Branch(models.Model):
+"""class Branch(models.Model):
     name = models.CharField(max_length=100)
     address = models.CharField(max_length=255)
     city = models.CharField(max_length=100)
@@ -34,6 +36,7 @@ class Branch(models.Model):
 
     def __str__(self):
         return f"{self.name} - {self.city}"
+"""
 
 # Horarios de disponibilidad por día de la semana
 class Availability(models.Model):

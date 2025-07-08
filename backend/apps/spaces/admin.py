@@ -11,11 +11,11 @@ class TagAdmin(admin.ModelAdmin):
     list_display = ('name',)
     search_fields = ('name',)
 
-@admin.register(Branch)
+"""@admin.register(Branch)
 class BranchAdmin(admin.ModelAdmin):
     list_display = ('name', 'city', 'region', 'phone', 'email')
     search_fields = ('name', 'city', 'region')
-
+"""
 @admin.register(Availability)
 class AvailabilityAdmin(admin.ModelAdmin):
     list_display = ('space', 'day_of_week', 'start_time', 'end_time')
