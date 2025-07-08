@@ -9,38 +9,90 @@ import { useTranslation } from 'react-i18next';
 
 const SpacesTable = () => {
     const { t } = useTranslation();
-    const [showForm, setShowForm] = useState(false); // Controla el formulario
-    const [book, setBook] = useState([]);
+    const [spaces, setSpaces] = useState([]);
     const [filterText, setFilterText] = useState("");
     const [perPage, setPerPage] = useState(10);
     const navigate = useNavigate();
+    const [isDark, setIsDark] = useState(document.documentElement.classList.contains("dark"));
 
-    const fetchBook = async (q = "") => {
+    useEffect(() => {
+        const observer = new MutationObserver(() => {
+            setIsDark(document.documentElement.classList.contains("dark"));
+        });
+
+        observer.observe(document.documentElement, {
+            attributes: true,
+            attributeFilter: ['class'],
+        });
+
+        return () => observer.disconnect();
+    }, []);
+
+
+    const customStyles = {
+        table: {
+            style: {
+                backgroundColor: isDark ? "#121212" : "#ffffff",
+                borderRadius: 0,
+            },
+        },
+        headRow: {
+            style: {
+                backgroundColor: isDark ? "#121212" : "#f3f4f6", // mismo fondo que fila 3
+            },
+        },
+        headCells: {
+            style: {
+                color: isDark ? "#ffffff" : "#000000", // texto blanco en dark
+                fontWeight: "bold",
+            },
+        },
+        rows: {
+            style: {
+                backgroundColor: isDark ? "#121212" : "#ffffff",
+                color: "#000000", // texto negro por defecto
+            },
+        },
+        cells: {
+            style: {
+                color: "#000000", // override en fila 3 más abajo
+            },
+        },
+        pagination: {
+            style: {
+                backgroundColor: isDark ? "#121212" : "#ffffff",
+                color: isDark ? "#ffffff" : "#000000",
+            },
+        },
+    };
+
+
+
+    const fetchSpaces = async (q = "") => {
         const token = localStorage.getItem("access_token");
         const res = await axios.get(`http://localhost:8000/api/spaces/search/?q=${q}`, {
             headers: {
                 Authorization: `Bearer ${token}`,
             },
         });
-        setBook(res.data);
+        setSpaces(res.data);
     };
 
     useEffect(() => {
-        fetchBook();
+        fetchSpaces();
     }, []);
 
     useEffect(() => {
         const delayDebounce = setTimeout(() => {
-            fetchBook(filterText);
+            fetchSpaces(filterText);
         }, 300);
         return () => clearTimeout(delayDebounce);
     }, [filterText]);
 
-
     const handleDelete = async (id) => {
         const confirm = await Swal.fire({
             title: "¿Estás seguro?",
-            text: "Este cliente será eliminado permanentemente.",
+            text: "Este Espacio será eliminada permanentemente.",
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Sí, eliminar",
@@ -52,16 +104,16 @@ const SpacesTable = () => {
         if (confirm.isConfirmed) {
             try {
                 const token = localStorage.getItem("access_token");
-                await axios.delete(`http://localhost:8000/api/books/delete/${id}/`, {
+                await axios.delete(`http://localhost:8000/api/spaces/delete/${id}/`, {
                     headers: {
                         Authorization: `Bearer ${token}`,
                     },
                 });
-                Swal.fire("Eliminado", "Libro eliminado correctamente.", "success");
-                fetchBook();
+                Swal.fire("Eliminado", "Espacio eliminado correctamente.", "success");
+                fetchSpaces();
             } catch (error) {
                 console.error("Error al eliminar:", error);
-                Swal.fire("Error", "No se pudo eliminar el libro.", "error");
+                Swal.fire("Error", "No se pudo eliminar Espacio.", "error");
             }
         }
     };
@@ -71,22 +123,24 @@ const SpacesTable = () => {
     };
 
     const columns = [
-
         {
-            name: "Libros",
-            selector: row => row.title,
+            name: "Espacio",
+            selector: row => row.name,
             sortable: true,
         },
-
         {
-            name: "Autor",
-            selector: row => row.author.name,
+            name: "Dirección",
+            selector: row => row.address,
             sortable: true,
         },
-
         {
-            name: "ISBN",
-            selector: row => row.isbn,
+            name: "Teléfono",
+            selector: row => row.phone,
+            sortable: true,
+        },
+        {
+            name: "Email",
+            selector: row => row.email,
             sortable: true,
         },
         {
@@ -110,24 +164,23 @@ const SpacesTable = () => {
                 </div>
             ),
             ignoreRowClick: true,
-            //allowOverflow: false,
-            //button: true,
         },
     ];
 
     return (
-        <div className="p-4 bg-white dark:bg-[#121212] text-gray-800 dark:text-gray-100 rounded-sm shadow transition-colors duration-300">
+        <div className="p-4 bg-white dark:bg-[#121212] text-gray-800 dark:text-gray-100 shadow transition-colors duration-300 border">
             <input
                 type="text"
                 placeholder={t('buscador')}
-                className="w-full max-w-md px-4 py-2 mb-4 border rounded-sm bg-white dark:bg-[#2a2a2a] dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
+                className="w-full max-w-md px-4 py-2 mb-4 border border-none bg-white dark:bg-[#121212] dark:text-white shadow-sm focus:outline-none focus:ring-2 focus:ring-yellow-500"
                 value={filterText}
                 onChange={(e) => setFilterText(e.target.value)}
             />
 
+
             <DataTable
                 columns={columns}
-                data={book}
+                data={spaces}
                 pagination
                 paginationPerPage={perPage}
                 paginationRowsPerPageOptions={[5, 10, 25, 50, 100]}
@@ -135,40 +188,31 @@ const SpacesTable = () => {
                 highlightOnHover
                 responsive
                 striped
-                noDataComponent={t('listar')}
-                className="min-w-full table-auto border border-gray-200 text-sm sm:text-base"
+                noDataComponent={t("listar")}
+                customStyles={customStyles}
+                conditionalRowStyles={[
+                    {
+                        when: (row, index) => isDark && index === 2, // tercera fila
+                        style: {
+                            color: "#ffffff", // texto blanco
+                            backgroundColor: "#121212", // asegura fondo igual que cabecera
+                        },
+                    },
+                ]}
+                className="text-black"
             />
+
 
             <div className="mt-4 text-right">
                 <Link to="/spaces/create">
-                    <button className="bg-yellow-400 text-black p-3 rounded-sm shadow hover:bg-yellow-500 transition flex items-center space-x-2">
+                    <button className="bg-yellow-400 text-black p-3 shadow hover:bg-yellow-500 transition flex items-center space-x-2">
                         <FaPlus />
-                        <span>{t('button_create_space')}</span>
+                        <span>{t('button_new_branches')}</span>
                     </button>
                 </Link>
             </div>
-            {/* Formulario para crear o editar espacio */}
-            {showForm && (
-                <div className="fixed inset-0 bg-black bg-opacity-40 flex justify-center items-start pt-20 z-50">
-                    <div className="bg-white dark:bg-[#1f1f1f] text-gray-800 dark:text-gray-100 p-6 rounded-sm shadow-md w-full max-w-xl relative transition-colors duration-300">
-                        <div className="flex justify-between items-center mb-4">
-                            <h2 className="text-lg font-bold">{t('button_create_space')}</h2>
-                            <button
-                                onClick={() => setShowForm(false)}
-                                className="text-red-500 hover:text-red-700 font-bold text-xl"
-                                title="Cerrar"
-                            >
-                                &times;
-                            </button>
-                        </div>
-                        <SpacesForm onClose={() => setShowForm(false)} />
-                    </div>
-                </div>
-            )}
-
         </div>
     );
 };
-
 
 export default SpacesTable;
