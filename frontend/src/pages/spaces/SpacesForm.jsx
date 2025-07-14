@@ -41,24 +41,24 @@ const SpacesForm = () => {
     has_special_equipment: false,
   });
 
-useEffect(() => {
-  const fetchData = async () => {
-    const token = localStorage.getItem("access_token");
-    const headers = { Authorization: `Bearer ${token}` };
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem("access_token");
+      const headers = { Authorization: `Bearer ${token}` };
 
-    const [branchRes, tagsRes, amenitiesRes] = await Promise.all([
-      axios.get("http://localhost:8000/api/branches/", { headers }),
-      axios.get("http://localhost:8000/api/spaces/tags/"),
-      axios.get("http://localhost:8000/api/spaces/amenities/"),
-    ]);
+      const [branchRes, tagsRes, amenitiesRes] = await Promise.all([
+        axios.get("http://localhost:8000/api/branches/", { headers }),
+        axios.get("http://localhost:8000/api/spaces/tags/"),
+        axios.get("http://localhost:8000/api/spaces/amenities/"),
+      ]);
 
-    setBranches(branchRes.data);
-    setTags(tagsRes.data.results || []);
-    setAmenities(amenitiesRes.data.results || []); // 👈 FIX AQUÍ
-  };
+      setBranches(branchRes.data);
+      setTags(tagsRes.data.results || []);
+      setAmenities(amenitiesRes.data.results || []); // 👈 FIX AQUÍ
+    };
 
-  fetchData();
-}, []);
+    fetchData();
+  }, []);
 
 
 
@@ -126,13 +126,31 @@ useEffect(() => {
 
       if (id) {
         await axios.put(`http://localhost:8000/api/spaces/spaces/${id}/`, formToSend, config);
-        Swal.fire("Actualizado", "Espacio actualizado correctamente", "success");
+        Swal.fire({
+          title: "¡Espacio actualizado!",
+          icon: "success",
+          draggable: true,
+          timer: 2000,
+          showConfirmButton: false,
+        }).then(() => {
+          navigate("/spaces");
+        });
+
+
       } else {
         await axios.post("http://localhost:8000/api/spaces/", formToSend, config);
-        Swal.fire("Creado", "Espacio creado correctamente", "success");
+        Swal.fire({
+          title: "¡Espacio Creato!",
+          icon: "success",
+          draggable: true,
+          timer: 2000,
+          showConfirmButton: false,
+        }).then(() => {
+          navigate("/spaces");
+        });
+
       }
 
-      navigate("/spaces");
     } catch (error) {
       Swal.fire("Error", "No se pudo guardar el espacio", "error");
     }
