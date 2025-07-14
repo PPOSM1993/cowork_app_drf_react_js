@@ -18,13 +18,14 @@ class UserManager(BaseUserManager):
             rut=rut,
             **extra_fields
         )
-        user.set_password(password, password2)
+        user.set_password(password)
         user.save(using=self._db)
         return user
 
     def create_superuser(self, email, username, first_name, last_name, rut=None, password=None, password2=None, **extra_fields):
         extra_fields.setdefault('is_staff', True)
         extra_fields.setdefault('is_superuser', True)
+        extra_fields.setdefault('is_active', True)  # <-- asegúrate de activarlo
         extra_fields.setdefault('accepted_terms', True)
 
         if extra_fields.get('is_staff') is not True:
