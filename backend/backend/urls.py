@@ -6,4 +6,6 @@ urlpatterns = [
     path('api/authentication/', include('apps.authentication.urls')),
     path('api/branches/', include('apps.branches.urls')),
     path('api/spaces/', include('apps.spaces.urls')),
+    path('api/customers/', include('apps.customers.urls')),
+    path('api/reservations/', include('apps.reservations.urls')),
 ]

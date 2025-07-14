@@ -35,7 +35,7 @@ class Branch(models.Model):
     phone = models.CharField("Phone", validators=[phone_regex], max_length=17, blank=True, unique=True)
     email = models.EmailField(blank=True)
     image = models.ImageField(upload_to='branches/', blank=True, null=True)
-    
+
     is_active = models.BooleanField(default=True)
     #manager = models.ForeignKey('employees.Employee', on_delete=models.SET_NULL, null=True, blank=True, related_name='managed_branches')
     #manager quedara pendiente hasta crear la app de Employee

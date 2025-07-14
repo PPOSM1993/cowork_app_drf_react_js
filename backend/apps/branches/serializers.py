@@ -81,6 +81,4 @@ class BranchSerializer(serializers.ModelSerializer):
                 raise serializers.ValidationError('Branch phone is required')
             elif data['email'] == '':
                 raise serializers.ValidationError('Branch email is required')
-        
             return data
-    
