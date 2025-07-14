@@ -8,4 +8,5 @@ urlpatterns = [
     path('api/spaces/', include('apps.spaces.urls')),
     path('api/customers/', include('apps.customers.urls')),
     path('api/reservations/', include('apps.reservations.urls')),
+    path('api/payments/', include('apps.payments.urls')),
 ]

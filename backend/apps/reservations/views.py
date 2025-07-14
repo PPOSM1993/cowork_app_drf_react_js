@@ -5,6 +5,7 @@ from rest_framework.response import Response
 from .models import Reservation
 from .serializers import ReservationSerializer
 from .pagination import CustomPagination
+from rest_framework.permissions import IsAuthenticated
 
 # -------------------------
 # RESERVATIONS
@@ -37,5 +38,25 @@ class ReservationRetrieveUpdateDestroyView(generics.RetrieveUpdateDestroyAPIView
 @permission_classes([permissions.IsAuthenticated])
 def ReservationsByCustomer(request, customer_id):
     reservations = Reservation.objects.filter(customer__id=customer_id, status='active')
+    serializer = ReservationSerializer(reservations, many=True)
+    return Response(serializer.data)
+
+@api_view(['GET'])
+@permission_classes([IsAuthenticated])
+def SearchReservations(request):
+    query = request.GET.get('q', '')
+    if query:
+        reservations = Reservation.objects.filter(
+            code__icontains=query
+        ) | Reservation.objects.filter(
+            status__icontains=query
+        ) | Reservation.objects.filter(
+            customer__first_name__icontains=query
+        ) | Reservation.objects.filter(
+            customer__last_name__icontains=query
+        )
+    else:
+        reservations = Reservation.objects.all()
+
     serializer = ReservationSerializer(reservations, many=True)
     return Response(serializer.data)
