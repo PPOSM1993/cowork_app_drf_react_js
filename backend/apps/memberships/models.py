@@ -1,4 +1,3 @@
-# Create your models here.
 from django.db import models
 from django.utils import timezone
 
@@ -25,6 +24,8 @@ class Membership(models.Model):
     start_date = models.DateTimeField(default=timezone.now)
     end_date = models.DateTimeField(blank=True, null=True)
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='active')
+    is_active = models.BooleanField(default=True)  # <--- agrega este campo
+
     auto_renew = models.BooleanField(default=True)
     usage_limit = models.PositiveIntegerField(default=0, help_text="Cantidad de usos incluidos en el plan")
     usage_count = models.PositiveIntegerField(default=0, help_text="Cantidad de usos realizados")
@@ -32,7 +33,7 @@ class Membership(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
-    def is_active(self):
+    def is_currently_active(self):
         return self.status == 'active' and (self.end_date is None or self.end_date >= timezone.now())
 
     def __str__(self):

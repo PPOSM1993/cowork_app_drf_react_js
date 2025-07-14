@@ -54,8 +54,8 @@ INSTALLED_APPS = [
     'apps.customers',
     'apps.identity_verification',
     'apps.integrations',
-    'apps.memberships',
     'apps.notifications',
+    'apps.memberships',
     'apps.payments',
     'apps.profiles',
     'apps.recommendation',
@@ -165,7 +165,7 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',
     ],
-    
+
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10,
 
@@ -174,7 +174,7 @@ REST_FRAMEWORK = {
         'rest_framework.filters.SearchFilter',
         'rest_framework.filters.OrderingFilter',
     ],
-    
+
 }
 
 SIMPLE_JWT = {
@@ -198,5 +198,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'tu-correo@gmail.com'
 EMAIL_HOST_PASSWORD = 'tu-contraseña-o-token'
-EMAIL_USE_TLS = True    
+EMAIL_USE_TLS = True
 """
