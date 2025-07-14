@@ -51,6 +51,7 @@ INSTALLED_APPS = [
     'apps.blog',
     'apps.branches',
     'apps.chat',
+    'apps.customers',
     'apps.identity_verification',
     'apps.integrations',
     'apps.memberships',
@@ -197,6 +198,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_PORT = 587
 EMAIL_HOST_USER = 'tu-correo@gmail.com'
 EMAIL_HOST_PASSWORD = 'tu-contraseña-o-token'
-EMAIL_USE_TLS = True
-    
+EMAIL_USE_TLS = True    
 """
