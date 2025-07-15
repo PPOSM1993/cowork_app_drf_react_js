@@ -52,6 +52,7 @@ INSTALLED_APPS = [
     'apps.branches',
     'apps.chat',
     'apps.customers',
+    'apps.invoice',
     'apps.identity_verification',
     'apps.integrations',
     'apps.notifications',
