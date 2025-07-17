@@ -1,5 +1,7 @@
 from django.contrib import admin
 from .models import Space, Amenity, Tag, Branch, Availability
+from apps.reviews.admin import ReviewInline
+from django.contrib.contenttypes.admin import GenericStackedInline
 
 @admin.register(Amenity)
 class AmenityAdmin(admin.ModelAdmin):
@@ -24,6 +26,7 @@ class AvailabilityAdmin(admin.ModelAdmin):
 
 @admin.register(Space)
 class SpaceAdmin(admin.ModelAdmin):
+    inlines = [ReviewInline]
     list_display = ('name', 'type', 'capacity', 'price_per_hour', 'is_available', 'branch')
     list_filter = ('type', 'is_available', 'branch')
     search_fields = ('name', 'description')

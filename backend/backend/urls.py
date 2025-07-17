@@ -14,6 +14,11 @@ urlpatterns = [
     path('api/invoice/', include('apps.invoice.urls')),
     path('api/support/', include('apps.support.urls')),
     path('api/notifications/', include('apps.notifications.urls')),
-    path('api/', include('apps.referrals.urls')),
+    path('api/referrals/', include('apps.referrals.urls')),
+    path('api/recommendations/', include('apps.recommendation.urls')),
+    path('api/blog/', include('apps.blog.urls')),
+    path('api/reviews/', include('apps.reviews.urls')),
+    path('api/resources/', include('apps.resources.urls')),
+
 
 ]
