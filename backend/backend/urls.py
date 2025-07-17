@@ -20,6 +20,9 @@ urlpatterns = [
     path('api/reviews/', include('apps.reviews.urls')),
     path('api/resources/', include('apps.resources.urls')),
     path('api/employee/', include('apps.employee.urls')),
-
+    path('api/chat/', include('apps.chat.urls')),
+    path('api/identity_verification/', include('apps.identity_verification.urls')),
+    path('api/analytics/', include('apps.analytics.urls')),
+    path('api/apigateway/', include('apps.api_gateway.urls')),
 
 ]
