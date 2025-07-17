@@ -70,6 +70,7 @@ INSTALLED_APPS = [
     'apps.spaces',
     'apps.support',
     'apps.resources',
+    'apps.employee',
 ]
 
 MIDDLEWARE = [
