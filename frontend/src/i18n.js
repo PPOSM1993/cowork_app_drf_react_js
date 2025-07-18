@@ -19,6 +19,8 @@ const resources = {
       title_form_spaces: "Registrar Nuevo Espacio",
       save_branch: "Crear Sucursal",
       phone:'Numero de Telefono',
+      title_customers: "Nuevo Cliente",
+      email:"Correo Electrónico",
 
 
       // Nuevas secciones y etiquetas del Sidebar
@@ -61,6 +63,9 @@ const resources = {
       address_spaces:"Direccion",
       placeholder_address: "Ingrese Direccion",
       title_branches:"Nueva Sucursal",
+      first_name_customer: "Nombre del Cliente",
+      last_name_customer: "Apellido del Cliente",
+      save_customer: "Guardar Cliente",
     },
   },
   en: {
@@ -75,6 +80,7 @@ const resources = {
       profile: 'Profile',
       title_space: 'Spaces',
       phone:'Phone Number',
+      email:"Email",
 
       general: 'General',
       users: 'Users',
@@ -118,8 +124,11 @@ const resources = {
       cancel: "Cancel",
       address_spaces:"Address",
       placeholder_address: "Enter Address",
-      title_branches:"New Branch"
-      
+      title_branches:"New Branch",
+      title_customers: "New Customer",
+      first_name_customer: "First Name",
+      last_name_customer: "Last Name",
+      save_customer: "Save Customer",
     },
   },
 };
