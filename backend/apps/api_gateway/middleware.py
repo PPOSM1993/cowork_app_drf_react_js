@@ -4,10 +4,23 @@ from django.http import JsonResponse
 from .models import APIKey, APIAccessLog
 from django.utils.timezone import now
 
+
 class APIKeyMiddleware(MiddlewareMixin):
 
+    EXCLUDED_PATHS = [
+        '/api/token/',              # JWT login
+        '/api/token/refresh/',      # JWT refresh
+        '/api/authentication/login/',         # Login personalizado (ajusta si es necesario)
+        '/api/authentication/register/',      # Registro (ajusta si es necesario)
+        '/api/branches/',            # Excluir ramas
+        '/api/spaces/',              # Excluir espacios
+    ]
+
     def process_request(self, request):
-        # Solo proteger rutas que empiecen con /api/ (ajusta según necesidad)
+        # Excluir rutas públicas
+        if any(request.path.startswith(path) for path in self.EXCLUDED_PATHS):
+            return None
+
         if not request.path.startswith('/api/'):
             return None
 
@@ -20,23 +33,19 @@ class APIKeyMiddleware(MiddlewareMixin):
         except APIKey.DoesNotExist:
             return JsonResponse({'detail': 'API key inválida o inactiva.'}, status=403)
 
-        # Verificar expiración
         if api_key.expires_at and api_key.expires_at < now():
             return JsonResponse({'detail': 'API key expirada.'}, status=403)
 
-        # Contar llamadas hoy
         today_start = now().replace(hour=0, minute=0, second=0, microsecond=0)
         usage_count = APIAccessLog.objects.filter(api_key=api_key, timestamp__gte=today_start).count()
         if usage_count >= api_key.usage_limit_per_day:
             return JsonResponse({'detail': 'Límite diario de uso excedido.'}, status=429)
 
-        # Guardar api_key en request para uso en vistas si es necesario
         request.api_key = api_key
 
         return None
 
     def process_response(self, request, response):
-        # Registrar el acceso si existe api_key en request
         api_key = getattr(request, 'api_key', None)
         if api_key:
             APIAccessLog.objects.create(
@@ -55,3 +64,4 @@ class APIKeyMiddleware(MiddlewareMixin):
             ip = x_forwarded_for.split(',')[0]
         else:
             ip = request.META.get('REMOTE_ADDR')
+        return ip
