@@ -163,6 +163,14 @@ CORS_ALLOWED_ORIGINS = [
     #"http://127.0.0.1:9000",
 ]
 
+
+from corsheaders.defaults import default_headers
+
+CORS_ALLOW_HEADERS = list(default_headers) + [
+    "x-api-key",
+]
+
+
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
         'rest_framework.authentication.SessionAuthentication',
