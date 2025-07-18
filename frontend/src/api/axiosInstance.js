@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_KEY = '<TU_API_KEY_AQUI>';  // Mejor si la cargas desde una variable de entorno
+const API_KEY = 'c7b6156d-e86d-4cab-a2a0-fa918faa1eae';  // Mejor si la cargas desde una variable de entorno
 
 const axiosInstance = axios.create({
     baseURL: 'http://localhost:8000/api/',
