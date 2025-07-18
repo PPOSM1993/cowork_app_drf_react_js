@@ -1,5 +1,6 @@
 export { default as App } from './App';
 export * from './api/authService';
+export { default as axiosInstance } from './api/axiosInstance';
 export * from './components/Button';
 export * from './components/Footer';
 export * from './components/Input';
