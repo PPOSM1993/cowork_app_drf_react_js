@@ -1273,14 +1273,6 @@
   },
   {
     "model": "customers.city",
-    "pk": 159,
-    "fields": {
-      "name": "Pelluhue",
-      "region": 7
-    }
-  },
-  {
-    "model": "customers.city",
     "pk": 160,
     "fields": {
       "name": "Chillán",
@@ -1305,7 +1297,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 162,
+    "pk": 163,
     "fields": {
       "name": "Quirihue",
       "region": 16
@@ -1313,7 +1305,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 163,
+    "pk": 164,
     "fields": {
       "name": "Coelemu",
       "region": 16
@@ -1321,7 +1313,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 164,
+    "pk": 165,
     "fields": {
       "name": "Yungay",
       "region": 16
@@ -1329,7 +1321,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 165,
+    "pk": 166,
     "fields": {
       "name": "El Carmen",
       "region": 16
@@ -1337,7 +1329,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 166,
+    "pk": 167,
     "fields": {
       "name": "Pemuco",
       "region": 16
@@ -1345,7 +1337,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 167,
+    "pk": 168,
     "fields": {
       "name": "San Ignacio",
       "region": 16
@@ -1353,7 +1345,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 168,
+    "pk": 169,
     "fields": {
       "name": "Quillón",
       "region": 16
@@ -1361,33 +1353,18 @@
   },
   {
     "model": "customers.city",
-    "pk": 169,
+    "pk": 170,
     "fields": {
       "name": "Pinto",
       "region": 16
     }
   },
-  {
-    "model": "customers.city",
-    "pk": 170,
-    "fields": {
-      "name": "Pelluhue",
-      "region": 7
-    }
-  },
-  {
-    "model": "customers.city",
-    "pk": 171,
-    "fields": {
-      "name": "Coihueco",
-      "region": 16
-    }
-  },
+
   {
     "model": "customers.city",
     "pk": 172,
     "fields": {
-      "name": "Pelluhue",
+      "name": "Coihueco",
       "region": 16
     }
   },
@@ -1401,7 +1378,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 174,
+    "pk": 175,
     "fields": {
       "name": "Ninhue",
       "region": 16
@@ -1409,7 +1386,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 175,
+    "pk": 176,
     "fields": {
       "name": "Trehuaco",
       "region": 16
@@ -1417,7 +1394,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 176,
+    "pk": 177,
     "fields": {
       "name": "Cobquecura",
       "region": 16
@@ -1425,7 +1402,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 177,
+    "pk": 178,
     "fields": {
       "name": "Ránquil",
       "region": 16
@@ -1433,7 +1410,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 178,
+    "pk": 179,
     "fields": {
       "name": "Portezuelo",
       "region": 16
@@ -1441,7 +1418,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 179,
+    "pk": 180,
     "fields": {
       "name": "Concepción",
       "region": 8
@@ -1449,7 +1426,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 180,
+    "pk": 181,
     "fields": {
       "name": "Talcahuano",
       "region": 8
@@ -1457,7 +1434,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 181,
+    "pk": 182,
     "fields": {
       "name": "Chiguayante",
       "region": 8
@@ -1465,7 +1442,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 182,
+    "pk": 183,
     "fields": {
       "name": "San Pedro de la Paz",
       "region": 8
@@ -1473,7 +1450,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 183,
+    "pk": 184,
     "fields": {
       "name": "Hualpén",
       "region": 8
@@ -1481,7 +1458,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 184,
+    "pk": 185,
     "fields": {
       "name": "Coronel",
       "region": 8
@@ -1489,7 +1466,7 @@
   },
   {
     "model": "customers.city",
-    "pk": 185,
+    "pk": 186,
     "fields": {
       "name": "Lota",
       "region": 8
@@ -1497,20 +1474,13 @@
   },
   {
     "model": "customers.city",
-    "pk": 186,
+    "pk": 187,
     "fields": {
       "name": "Tomé",
       "region": 7
     }
   },
-  {
-    "model": "customers.city",
-    "pk": 187,
-    "fields": {
-      "name": "Pelluhue",
-      "region": 8
-    }
-  },
+
   {
     "model": "customers.city",
     "pk": 188,
