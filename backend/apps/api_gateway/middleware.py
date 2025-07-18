@@ -6,24 +6,24 @@ from django.utils.timezone import now
 
 
 class APIKeyMiddleware(MiddlewareMixin):
-
     EXCLUDED_PATHS = [
-        '/api/token/',              # JWT login
-        '/api/token/refresh/',      # JWT refresh
-        '/api/authentication/login/',         # Login personalizado (ajusta si es necesario)
-        '/api/authentication/register/',      # Registro (ajusta si es necesario)
-        '/api/branches/',            # Excluir ramas
-        '/api/spaces/',              # Excluir espacios
+        '/api/token/',
+        '/api/token/refresh/',
+        '/api/authentication/login/',
+        '/api/authentication/register/',
+        '/api/authentication/confirm-email/',
     ]
 
     def process_request(self, request):
-        # Excluir rutas públicas
+        # Permitir acceso libre a las rutas públicas
         if any(request.path.startswith(path) for path in self.EXCLUDED_PATHS):
             return None
 
+        # Si no es una ruta de la API, dejarla pasar sin API Key
         if not request.path.startswith('/api/'):
             return None
 
+        # Verificar API Key
         api_key_value = request.headers.get('X-API-KEY')
         if not api_key_value:
             return JsonResponse({'detail': 'API key requerida.'}, status=401)
@@ -33,14 +33,17 @@ class APIKeyMiddleware(MiddlewareMixin):
         except APIKey.DoesNotExist:
             return JsonResponse({'detail': 'API key inválida o inactiva.'}, status=403)
 
+        # Verificar expiración de la API Key
         if api_key.expires_at and api_key.expires_at < now():
             return JsonResponse({'detail': 'API key expirada.'}, status=403)
 
+        # Verificar límite diario
         today_start = now().replace(hour=0, minute=0, second=0, microsecond=0)
         usage_count = APIAccessLog.objects.filter(api_key=api_key, timestamp__gte=today_start).count()
         if usage_count >= api_key.usage_limit_per_day:
             return JsonResponse({'detail': 'Límite diario de uso excedido.'}, status=429)
 
+        # Asociar API Key al request
         request.api_key = api_key
 
         return None
@@ -61,7 +64,5 @@ class APIKeyMiddleware(MiddlewareMixin):
     def get_client_ip(self, request):
         x_forwarded_for = request.META.get('HTTP_X_FORWARDED_FOR')
         if x_forwarded_for:
-            ip = x_forwarded_for.split(',')[0]
-        else:
-            ip = request.META.get('REMOTE_ADDR')
-        return ip
+            return x_forwarded_for.split(',')[0]
+        return request.META.get('REMOTE_ADDR')
