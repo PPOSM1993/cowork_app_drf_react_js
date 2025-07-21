@@ -9,7 +9,8 @@ import {
   SpacesForm,
   BranchesForm,
   BranchesList,
-  CustomersForm
+  CustomersForm,
+  CustomersList
 } from '.././index.js'
 
 export default function AppRouter() {
@@ -60,7 +61,16 @@ export default function AppRouter() {
         />
 
         <Route
+          path="/customers"
+          element={isAuthenticated ? <CustomersList /> : <Navigate to="/customers" />}
+        />
+
+        <Route
           path="/customers/create"
+          element={isAuthenticated ? <CustomersForm /> : <Navigate to="/customers" />}
+        />
+        <Route
+          path="/customers/edit/:id"
           element={isAuthenticated ? <CustomersForm /> : <Navigate to="/customers" />}
         />
 

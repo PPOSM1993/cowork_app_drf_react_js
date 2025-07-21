@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Sidebar, Header } from "../../index";
+import { Sidebar, Header, axiosInstance } from "../../index";
 import { useNavigate, useParams } from "react-router-dom";
 import Swal from "sweetalert2";
 import { CiCirclePlus } from "react-icons/ci";
 import { ImCancelCircle } from "react-icons/im";
-import axiosInstance from "../../api/axiosInstance";
 
 const CustomersForm = () => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
