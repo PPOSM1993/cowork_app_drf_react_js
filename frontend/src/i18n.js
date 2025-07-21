@@ -21,6 +21,8 @@ const resources = {
       phone:'Numero de Telefono',
       title_customers: "Nuevo Cliente",
       email:"Correo Electrónico",
+      customers: 'Clientes',
+      customers_list: 'Clientes',
 
 
       // Nuevas secciones y etiquetas del Sidebar
@@ -129,6 +131,8 @@ const resources = {
       first_name_customer: "First Name",
       last_name_customer: "Last Name",
       save_customer: "Save Customer",
+      customers: 'Customers',
+      customers_list: 'Customers',
     },
   },
 };

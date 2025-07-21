@@ -6,6 +6,7 @@ import {
   MdApi, MdArticle, MdGroup, MdVerified, MdBarChart, MdLocationCity,
   MdExpandLess, MdExpandMore, MdHome
 } from 'react-icons/md';
+import { AiFillCustomerService } from "react-icons/ai";
 
 import { motion } from 'framer-motion';
 import logo from '../../assets/4.png';
@@ -32,6 +33,7 @@ const Sidebar = ({ isOpen }) => {
         { path: '/branches', icon: <MdLocationCity size={20} />, label: t('branches') },
         { path: '/resources', icon: <MdSettings size={20} />, label: t('resources') },
         { path: '/spaces', icon: <MdSettings size={20} />, label: t('spaces') },
+        { path: '/customers', icon: <AiFillCustomerService size={20} />, label: t('customers') },
       ],
     },
     {
