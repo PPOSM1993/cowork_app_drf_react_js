@@ -1,0 +1,2276 @@
+[
+  {
+    "model": "branches.city",
+    "pk": 1,
+    "fields": {
+      "name": "Arica",
+      "region": 15
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 2,
+    "fields": {
+      "name": "Putre",
+      "region": 15
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 3,
+    "fields": {
+      "name": "Iquique",
+      "region": 1
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 4,
+    "fields": {
+      "name": "Alto Hospicio",
+      "region": 1
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 5,
+    "fields": {
+      "name": "Pozo Almonte",
+      "region": 1
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 6,
+    "fields": {
+      "name": "Antofagasta",
+      "region": 2
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 7,
+    "fields": {
+      "name": "Mejillones",
+      "region": 2
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 8,
+    "fields": {
+      "name": "Taltal",
+      "region": 2
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 9,
+    "fields": {
+      "name": "Calama",
+      "region": 2
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 10,
+    "fields": {
+      "name": "San Pedro de Atacama",
+      "region": 2
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 11,
+    "fields": {
+      "name": "Tocopilla",
+      "region": 2
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 12,
+    "fields": {
+      "name": "Copiapó",
+      "region": 3
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 13,
+    "fields": {
+      "name": "Caldera",
+      "region": 3
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 14,
+    "fields": {
+      "name": "Tierra Amarilla",
+      "region": 3
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 15,
+    "fields": {
+      "name": "Chañaral",
+      "region": 3
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 16,
+    "fields": {
+      "name": "Diego de Almagro",
+      "region": 3
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 17,
+    "fields": {
+      "name": "El Salvador",
+      "region": 3
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 18,
+    "fields": {
+      "name": "Vallenar",
+      "region": 3
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 19,
+    "fields": {
+      "name": "Huasco",
+      "region": 3
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 20,
+    "fields": {
+      "name": "La Serena",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 21,
+    "fields": {
+      "name": "Coquimbo",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 22,
+    "fields": {
+      "name": "Tongoy",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 23,
+    "fields": {
+      "name": "Andacollo",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 24,
+    "fields": {
+      "name": "Vicuña",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 25,
+    "fields": {
+      "name": "Illapel",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 26,
+    "fields": {
+      "name": "Los Vilos",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 27,
+    "fields": {
+      "name": "Canela",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 28,
+    "fields": {
+      "name": "Salamanca",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 29,
+    "fields": {
+      "name": "Ovalle",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 30,
+    "fields": {
+      "name": "Combarbalá",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 31,
+    "fields": {
+      "name": "Monte Patria",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 32,
+    "fields": {
+      "name": "El Palqui",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 33,
+    "fields": {
+      "name": "Punitaqui",
+      "region": 4
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 34,
+    "fields": {
+      "name": "Valparaíso",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 35,
+    "fields": {
+      "name": "Viña del Mar",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 36,
+    "fields": {
+      "name": "Quilpué",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 37,
+    "fields": {
+      "name": "Villa Alemana",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 38,
+    "fields": {
+      "name": "Concón",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 39,
+    "fields": {
+      "name": "San Antonio",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 40,
+    "fields": {
+      "name": "Quintero",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 41,
+    "fields": {
+      "name": "Casa Blanca",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 42,
+    "fields": {
+      "name": "San Felipe",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 43,
+    "fields": {
+      "name": "Los Andes",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 44,
+    "fields": {
+      "name": "La Calera",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 45,
+    "fields": {
+      "name": "La Ligua",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 46,
+    "fields": {
+      "name": "Petorca",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 47,
+    "fields": {
+      "name": "Zapallar",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 48,
+    "fields": {
+      "name": "Papudo",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 49,
+    "fields": {
+      "name": "Puchuncaví",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 50,
+    "fields": {
+      "name": "Limache",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 51,
+    "fields": {
+      "name": "Olmué",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 52,
+    "fields": {
+      "name": "Nogales",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 53,
+    "fields": {
+      "name": "Hijuelas",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 54,
+    "fields": {
+      "name": "Catemu",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 54,
+    "fields": {
+      "name": "Panquehue",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 55,
+    "fields": {
+      "name": "Llaillay",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 56,
+    "fields": {
+      "name": "Putanedo",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 57,
+    "fields": {
+      "name": "Santa María",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 58,
+    "fields": {
+      "name": "Rinconada",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 59,
+    "fields": {
+      "name": "Calle Larga",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 60,
+    "fields": {
+      "name": "San Esteban",
+      "region": 5
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 61,
+    "fields": {
+      "name": "Santiago",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 62,
+    "fields": {
+      "name": "Maipú",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 63,
+    "fields": {
+      "name": "La Florida",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 64,
+    "fields": {
+      "name": "Las Condes",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 65,
+    "fields": {
+      "name": "San Bernardo",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 66,
+    "fields": {
+      "name": "Peñalolén",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 67,
+    "fields": {
+      "name": "La Pintana",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 68,
+    "fields": {
+      "name": "Pudahuel",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 69,
+    "fields": {
+      "name": "El Bosque",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 70,
+    "fields": {
+      "name": "Recoleta",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 71,
+    "fields": {
+      "name": "Ñuñoa",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 72,
+    "fields": {
+      "name": "La Granja",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 73,
+    "fields": {
+      "name": "Macul",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 74,
+    "fields": {
+      "name": "Indepencia",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 75,
+    "fields": {
+      "name": "Lo Prado",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 76,
+    "fields": {
+      "name": "Macul",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 77,
+    "fields": {
+      "name": "Estación Central",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 78,
+    "fields": {
+      "name": "Cerrillos",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 79,
+    "fields": {
+      "name": "Quilicura",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 80,
+    "fields": {
+      "name": "Renca",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 81,
+    "fields": {
+      "name": "Huechuraba",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 82,
+    "fields": {
+      "name": "Pedro Aguirre Cerda",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 83,
+    "fields": {
+      "name": "San Miguel",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 84,
+    "fields": {
+      "name": "San Joaquin",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 85,
+    "fields": {
+      "name": "La Cisterna",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 86,
+    "fields": {
+      "name": "Lo Espejo",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 87,
+    "fields": {
+      "name": "La Reina",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 88,
+    "fields": {
+      "name": "Providencia",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 89,
+    "fields": {
+      "name": "Providencia",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 90,
+    "fields": {
+      "name": "Vitacura",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 91,
+    "fields": {
+      "name": "Lo Barnechea",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 92,
+    "fields": {
+      "name": "Melipilla",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 93,
+    "fields": {
+      "name": "Talagante",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 94,
+    "fields": {
+      "name": "Buin",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 95,
+    "fields": {
+      "name": "Paine",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 96,
+    "fields": {
+      "name": "Colina",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 97,
+    "fields": {
+      "name": "Lampa",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 98,
+    "fields": {
+      "name": "Tiltil",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 99,
+    "fields": {
+      "name": "Curacaví",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 100,
+    "fields": {
+      "name": "Isla de Maipo",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 101,
+    "fields": {
+      "name": "El Monte",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 102,
+    "fields": {
+      "name": "Peñaflor",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 103,
+    "fields": {
+      "name": "San José de Maipo",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 104,
+    "fields": {
+      "name": "Pirque",
+      "region": 13
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 105,
+    "fields": {
+      "name": "Rancagua",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 106,
+    "fields": {
+      "name": "San Fernando",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 107,
+    "fields": {
+      "name": "Rengo",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 108,
+    "fields": {
+      "name": "Santa Cruz",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 109,
+    "fields": {
+      "name": "San Vicente de Tagua Tagua",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 110,
+    "fields": {
+      "name": "Pichilemu",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 111,
+    "fields": {
+      "name": "Chimbarongo",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 112,
+    "fields": {
+      "name": "Graneros",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 113,
+    "fields": {
+      "name": "Machalí",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 114,
+    "fields": {
+      "name": "Requínoa",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 115,
+    "fields": {
+      "name": "Mostazal",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 116,
+    "fields": {
+      "name": "Peumo",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 117,
+    "fields": {
+      "name": "Pichidegua",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 118,
+    "fields": {
+      "name": "Nancagua",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 119,
+    "fields": {
+      "name": "Peralillo",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 120,
+    "fields": {
+      "name": "Palmilla",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 121,
+    "fields": {
+      "name": "Placilla",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 122,
+    "fields": {
+      "name": "La Estrella",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 123,
+    "fields": {
+      "name": "Litueche",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 124,
+    "fields": {
+      "name": "Marchigüe",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 125,
+    "fields": {
+      "name": "Navidad",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 126,
+    "fields": {
+      "name": "Paredones",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 127,
+    "fields": {
+      "name": "Codegua",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 128,
+    "fields": {
+      "name": "Doñihue",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 129,
+    "fields": {
+      "name": "Coinco",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 130,
+    "fields": {
+      "name": "Coltauco",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 131,
+    "fields": {
+      "name": "Malloa",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 132,
+    "fields": {
+      "name": "Olivar",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 133,
+    "fields": {
+      "name": "Quinta de Tilcoco",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 134,
+    "fields": {
+      "name": "Las Cabras",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 135,
+    "fields": {
+      "name": "San Francisco de Mostazal",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 136,
+    "fields": {
+      "name": "Talca",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 137,
+    "fields": {
+      "name": "Curicó",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 138,
+    "fields": {
+      "name": "Parral",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 139,
+    "fields": {
+      "name": "Constitución",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 140,
+    "fields": {
+      "name": "San Javier",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 141,
+    "fields": {
+      "name": "Maule",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 142,
+    "fields": {
+      "name": "San Clemente",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 143,
+    "fields": {
+      "name": "Cauquenes",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 144,
+    "fields": {
+      "name": "Villa Alegre",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 145,
+    "fields": {
+      "name": "Colbún",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 146,
+    "fields": {
+      "name": "Longaví",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 147,
+    "fields": {
+      "name": "Retiro",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 148,
+    "fields": {
+      "name": "Rauco",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 149,
+    "fields": {
+      "name": "Romeral",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 150,
+    "fields": {
+      "name": "Sagrada Familia",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 152,
+    "fields": {
+      "name": "Hualañé",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 153,
+    "fields": {
+      "name": "Licantén",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 154,
+    "fields": {
+      "name": "Vichuquén",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 155,
+    "fields": {
+      "name": "Pelarco",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 156,
+    "fields": {
+      "name": "Pencahue",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 157,
+    "fields": {
+      "name": "Empedrado",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 158,
+    "fields": {
+      "name": "Chanco",
+      "region": 6
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 159,
+    "fields": {
+      "name": "Pelluhue",
+      "region": 7
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 160,
+    "fields": {
+      "name": "Chillán",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 161,
+    "fields": {
+      "name": "San Carlos",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 161,
+    "fields": {
+      "name": "Bulnes",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 163,
+    "fields": {
+      "name": "Quirihue",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 164,
+    "fields": {
+      "name": "Coelemu",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 165,
+    "fields": {
+      "name": "Yungay",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 166,
+    "fields": {
+      "name": "El Carmen",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 167,
+    "fields": {
+      "name": "Pemuco",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 168,
+    "fields": {
+      "name": "San Ignacio",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 169,
+    "fields": {
+      "name": "Quillón",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 170,
+    "fields": {
+      "name": "Pinto",
+      "region": 16
+    }
+  },
+
+  {
+    "model": "branches.city",
+    "pk": 172,
+    "fields": {
+      "name": "Coihueco",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 173,
+    "fields": {
+      "name": "San Nicolás",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 175,
+    "fields": {
+      "name": "Ninhue",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 176,
+    "fields": {
+      "name": "Trehuaco",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 177,
+    "fields": {
+      "name": "Cobquecura",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 178,
+    "fields": {
+      "name": "Ránquil",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 179,
+    "fields": {
+      "name": "Portezuelo",
+      "region": 16
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 180,
+    "fields": {
+      "name": "Concepción",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 181,
+    "fields": {
+      "name": "Talcahuano",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 182,
+    "fields": {
+      "name": "Chiguayante",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 183,
+    "fields": {
+      "name": "San Pedro de la Paz",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 184,
+    "fields": {
+      "name": "Hualpén",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 185,
+    "fields": {
+      "name": "Coronel",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 186,
+    "fields": {
+      "name": "Lota",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 187,
+    "fields": {
+      "name": "Tomé",
+      "region": 7
+    }
+  },
+
+  {
+    "model": "branches.city",
+    "pk": 188,
+    "fields": {
+      "name": "Penco",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 189,
+    "fields": {
+      "name": "Los Ángeles",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 190,
+    "fields": {
+      "name": "Nacimiento",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 191,
+    "fields": {
+      "name": "Mulchén",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 192,
+    "fields": {
+      "name": "Santa Bárbara",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 193,
+    "fields": {
+      "name": "Yumbel",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 194,
+    "fields": {
+      "name": "Cabrero",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 195,
+    "fields": {
+      "name": "Laja",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 196,
+    "fields": {
+      "name": "San Rosendo",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 197,
+    "fields": {
+      "name": "Quilleco",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 198,
+    "fields": {
+      "name": "Antuco",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 199,
+    "fields": {
+      "name": "Tucapel",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 200,
+    "fields": {
+      "name": "Ninhue",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 201,
+    "fields": {
+      "name": "Arauco",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 202,
+    "fields": {
+      "name": "Cañete",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 203,
+    "fields": {
+      "name": "Lebu",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 204,
+    "fields": {
+      "name": "Curanilahue",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 205,
+    "fields": {
+      "name": "Los Álamos",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 206,
+    "fields": {
+      "name": "Tirúa",
+      "region": 8
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 207,
+    "fields": {
+      "name": "Temuco",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 208,
+    "fields": {
+      "name": "Padre las Casas",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 209,
+    "fields": {
+      "name": "Angol",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 210,
+    "fields": {
+      "name": "Victoria",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 211,
+    "fields": {
+      "name": "Villarrica",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 212,
+    "fields": {
+      "name": "Pucón",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 213,
+    "fields": {
+      "name": "Lautaro",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 214,
+    "fields": {
+      "name": "Nueva Imperial",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 215,
+    "fields": {
+      "name": "Carahue",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 216,
+    "fields": {
+      "name": "Toltén",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 217,
+    "fields": {
+      "name": "Freire",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 218,
+    "fields": {
+      "name": "Gorbea",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 219,
+    "fields": {
+      "name": "Loncoche",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 220,
+    "fields": {
+      "name": "Pitrufquén",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 221,
+    "fields": {
+      "name": "Teodoro Schmidt",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 222,
+    "fields": {
+      "name": "Cunco",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 223,
+    "fields": {
+      "name": "Melipeuco",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 224,
+    "fields": {
+      "name": "Curarrehue",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 225,
+    "fields": {
+      "name": "Cholchol",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 226,
+    "fields": {
+      "name": "Perquenco",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 227,
+    "fields": {
+      "name": "Galvarino",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 228,
+    "fields": {
+      "name": "Traiguén",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 229,
+    "fields": {
+      "name": "Purén",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 230,
+    "fields": {
+      "name": "Los Sauces",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 231,
+    "fields": {
+      "name": "Collipulli",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 232,
+    "fields": {
+      "name": "Ercilla",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 233,
+    "fields": {
+      "name": "Renaico",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 234,
+    "fields": {
+      "name": "Lumaco",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 235,
+    "fields": {
+      "name": "Curacautín",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 236,
+    "fields": {
+      "name": "Lonquimay",
+      "region": 9
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 237,
+    "fields": {
+      "name": "Valdivia",
+      "region": 14
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 238,
+    "fields": {
+      "name": "La Unión",
+      "region": 14
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 239,
+    "fields": {
+      "name": "Río Bueno",
+      "region": 14
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 240,
+    "fields": {
+      "name": "Panguipulli",
+      "region": 14
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 241,
+    "fields": {
+      "name": "Lanco",
+      "region": 14
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 242,
+    "fields": {
+      "name": "Los Lagos",
+      "region": 14
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 243,
+    "fields": {
+      "name": "Futrono",
+      "region": 14
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 244,
+    "fields": {
+      "name": "Paillaco",
+      "region": 14
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 245,
+    "fields": {
+      "name": "Corral",
+      "region": 14
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 246,
+    "fields": {
+      "name": "Mariquina",
+      "region": 14
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 247,
+    "fields": {
+      "name": "Puerto Montt",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 248,
+    "fields": {
+      "name": "Osorno",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 250,
+    "fields": {
+      "name": "Ancud",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 251,
+    "fields": {
+      "name": "Quellón",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 252,
+    "fields": {
+      "name": "Calbuco",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 253,
+    "fields": {
+      "name": "Puerto Varas",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 254,
+    "fields": {
+      "name": "Frutillar",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 255,
+    "fields": {
+      "name": "Llanquihue",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 256,
+    "fields": {
+      "name": "Purranque",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 257,
+    "fields": {
+      "name": "Río Negro",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 258,
+    "fields": {
+      "name": "San Pablo",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 259,
+    "fields": {
+      "name": "San Juan de la Costa",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 260,
+    "fields": {
+      "name": "Chonchi",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 261,
+    "fields": {
+      "name": "Dalcahue",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 262,
+    "fields": {
+      "name": "Quemchi",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 263,
+    "fields": {
+      "name": "Curaco de Vélez",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 264,
+    "fields": {
+      "name": "Quinchao",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 265,
+    "fields": {
+      "name": "Puqueldón",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 266,
+    "fields": {
+      "name": "Queilén",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 267,
+    "fields": {
+      "name": "Chaitén",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 268,
+    "fields": {
+      "name": "Futaleufú",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 269,
+    "fields": {
+      "name": "Palena",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 270,
+    "fields": {
+      "name": "Hualaihué",
+      "region": 10
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 271,
+    "fields": {
+      "name": "Coyhaique",
+      "region": 11
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 272,
+    "fields": {
+      "name": "Puerto Aysén",
+      "region": 11
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 273,
+    "fields": {
+      "name": "Chile Chico",
+      "region": 11
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 274,
+    "fields": {
+      "name": "Cochrane",
+      "region": 11
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 275,
+    "fields": {
+      "name": "Puerto Cisnes",
+      "region": 11
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 276,
+    "fields": {
+      "name": "Puerto Ingeniero Ibáñez",
+      "region": 11
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 277,
+    "fields": {
+      "name": "Río Ibáñez",
+      "region": 11
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 278,
+    "fields": {
+      "name": "Guaitecas",
+      "region": 11
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 279,
+    "fields": {
+      "name": "Lago Verde",
+      "region": 11
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 280,
+    "fields": {
+      "name": "O'Higgins",
+      "region": 11
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 282,
+    "fields": {
+      "name": "Punta Arenas",
+      "region": 12
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 282,
+    "fields": {
+      "name": "Puerto Natales",
+      "region": 12
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 282,
+    "fields": {
+      "name": "Porvenir",
+      "region": 12
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 283,
+    "fields": {
+      "name": "Puerto Williams",
+      "region": 12
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 284,
+    "fields": {
+      "name": "Cabo de Hornos",
+      "region": 12
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 285,
+    "fields": {
+      "name": "San Gregorio",
+      "region": 12
+    }
+  },
+  {
+    "model": "branches.city",
+    "pk": 286,
+    "fields": {
+      "name": "Timaukel",
+      "region": 12
+    }
+  }
+]

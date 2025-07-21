@@ -6,6 +6,7 @@ import { FaPen, FaPlus } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useTranslation } from 'react-i18next';
+import { axiosInstance } from '../../index'
 
 const SpacesTable = () => {
     const { t } = useTranslation();
@@ -14,6 +15,7 @@ const SpacesTable = () => {
     const [perPage, setPerPage] = useState(10);
     const navigate = useNavigate();
     const [isDark, setIsDark] = useState(document.documentElement.classList.contains("dark"));
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const observer = new MutationObserver(() => {
@@ -68,15 +70,20 @@ const SpacesTable = () => {
 
 
 
-    const fetchSpaces = async (q = "") => {
-        const token = localStorage.getItem("access_token");
-        const res = await axios.get(`http://localhost:8000/api/spaces/search/?q=${q}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        setSpaces(res.data);
+
+        const fetchSpaces = async (q = "") => {
+        setLoading(true);
+        try {
+            const res = await axiosInstance.get(`/spaces/search/?q=${q}`);
+            setSpaces(res.data);
+        } catch (error) {
+            console.error("Error al cargar espacios:", error);
+            Swal.fire("Error", "No se pudieron cargar los Espacios.", "error");
+        } finally {
+            setLoading(false);
+        }
     };
+
 
     useEffect(() => {
         fetchSpaces();
@@ -190,6 +197,7 @@ const SpacesTable = () => {
                 striped
                 noDataComponent={t("listar")}
                 customStyles={customStyles}
+                progressPending={loading}
                 conditionalRowStyles={[
                     {
                         when: (row, index) => isDark && index === 2, // tercera fila

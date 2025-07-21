@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import DataTable from "react-data-table-component";
 import { Link, useNavigate } from "react-router-dom";
 import { FaPen, FaPlus } from "react-icons/fa";
 import { MdDelete } from "react-icons/md";
 import Swal from "sweetalert2";
 import { useTranslation } from 'react-i18next';
+import { axiosInstance } from '../../index'
 
 const BranchesTable = () => {
     const { t } = useTranslation();
@@ -14,6 +14,7 @@ const BranchesTable = () => {
     const [perPage, setPerPage] = useState(10);
     const navigate = useNavigate();
     const [isDark, setIsDark] = useState(document.documentElement.classList.contains("dark"));
+    const [loading, setLoading] = useState(false);
 
     useEffect(() => {
         const observer = new MutationObserver(() => {
@@ -68,14 +69,19 @@ const BranchesTable = () => {
 
 
 
+
+
     const fetchBranch = async (q = "") => {
-        const token = localStorage.getItem("access_token");
-        const res = await axios.get(`http://localhost:8000/api/branches/search/?q=${q}`, {
-            headers: {
-                Authorization: `Bearer ${token}`,
-            },
-        });
-        setBranch(res.data);
+        setLoading(true);
+        try {
+            const res = await axiosInstance.get(`/branches/search/?q=${q}`);
+            setBranch(res.data);
+        } catch (error) {
+            console.error("Error al cargar sucursales:", error);
+            Swal.fire("Error", "No se pudieron cargar los Sucursales.", "error");
+        } finally {
+            setLoading(false);
+        }
     };
 
     useEffect(() => {
@@ -92,7 +98,7 @@ const BranchesTable = () => {
     const handleDelete = async (id) => {
         const confirm = await Swal.fire({
             title: "¿Estás seguro?",
-            text: "Esta Sucursal será eliminada permanentemente.",
+            text: "Este Espacio será eliminado permanentemente.",
             icon: "warning",
             showCancelButton: true,
             confirmButtonText: "Sí, eliminar",
@@ -103,17 +109,12 @@ const BranchesTable = () => {
 
         if (confirm.isConfirmed) {
             try {
-                const token = localStorage.getItem("access_token");
-                await axios.delete(`http://localhost:8000/api/branches/delete/${id}/`, {
-                    headers: {
-                        Authorization: `Bearer ${token}`,
-                    },
-                });
+                await axiosInstance.delete(`customers/delete/${id}/`);
                 Swal.fire("Eliminado", "Sucursal eliminada correctamente.", "success");
                 fetchBranch();
             } catch (error) {
                 console.error("Error al eliminar:", error);
-                Swal.fire("Error", "No se pudo eliminar la Sucursal.", "error");
+                Swal.fire("Error", "No se pudo eliminar Sucursal.", "error");
             }
         }
     };
@@ -190,6 +191,7 @@ const BranchesTable = () => {
                 striped
                 noDataComponent={t("listar")}
                 customStyles={customStyles}
+                progressPending={loading}
                 conditionalRowStyles={[
                     {
                         when: (row, index) => isDark && index === 2, // tercera fila

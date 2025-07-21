@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Sidebar, Header } from "../../index";
+import { Sidebar, Header, axiosInstance } from "../../index";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
-import axios from "axios";
 import { CiCirclePlus } from "react-icons/ci";
 import { ImCancelCircle } from "react-icons/im";
 
@@ -32,18 +31,16 @@ const BranchesForm = () => {
   });
 
   useEffect(() => {
-    axios.get("/data/regionesData.json").then((res) => setRegions(res.data));
-    axios.get("/data/ciudadesData.json").then((res) => setCities(res.data));
+    // Carga JSON locales
+    import("./json/regions.json").then((res) => setRegions(res.default));
+    import("./json/cities.json").then((res) => setCities(res.default));
   }, []);
 
   useEffect(() => {
     if (id) {
       const fetchBranch = async () => {
         try {
-          const token = localStorage.getItem("access_token");
-          const res = await axios.get(`http://localhost:8000/api/branches/edit/${id}/`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
+          const res = await axiosInstance.get(`branches/edit/${id}/`);
           setFormData(res.data);
         } catch (error) {
           console.error("Error al cargar sucursal:", error);
@@ -67,8 +64,6 @@ const BranchesForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("access_token");
-
     const formToSend = new FormData();
     for (const key in formData) {
       if (formData[key] !== null) {
@@ -78,27 +73,13 @@ const BranchesForm = () => {
 
     try {
       if (id) {
-        await axios.put(
-          `http://localhost:8000/api/branches/edit/${id}/`,
-          formToSend,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        await axiosInstance.put(`branches/edit/${id}/`, formToSend, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
       } else {
-        await axios.post(
-          "http://localhost:8000/api/branches/create/",
-          formToSend,
-          {
-            headers: {
-              Authorization: `Bearer ${token}`,
-              "Content-Type": "multipart/form-data",
-            },
-          }
-        );
+        await axiosInstance.post("branches/create/", formToSend, {
+          headers: { "Content-Type": "multipart/form-data" },
+        });
       }
 
       Swal.fire({
@@ -122,7 +103,6 @@ const BranchesForm = () => {
           <h1 className="text-2xl font-bold mb-6">{t("title_branches")}</h1>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Name */}
             <div>
               <label className="block font-medium">{t("name_spaces")}</label>
               <input
@@ -134,7 +114,6 @@ const BranchesForm = () => {
               />
             </div>
 
-            {/* Address */}
             <div>
               <label className="block font-medium">{t("address_spaces")}</label>
               <input
@@ -146,7 +125,6 @@ const BranchesForm = () => {
               />
             </div>
 
-            {/* Region */}
             <div>
               <label className="block font-medium">Región</label>
               <select name="region" value={formData.region || ""} onChange={handleChange} className="input">
@@ -159,7 +137,6 @@ const BranchesForm = () => {
               </select>
             </div>
 
-            {/* City */}
             <div>
               <label className="block font-medium">Ciudad</label>
               <select name="city" value={formData.city || ""} onChange={handleChange} className="input">
@@ -174,25 +151,21 @@ const BranchesForm = () => {
               </select>
             </div>
 
-            {/* Phone */}
             <div>
               <label className="block font-medium">Teléfono</label>
               <input name="phone" value={formData.phone} onChange={handleChange} className="input" />
             </div>
 
-            {/* Email */}
             <div>
               <label className="block font-medium">Email</label>
               <input type="email" name="email" value={formData.email} onChange={handleChange} className="input" />
             </div>
 
-            {/* Imagen */}
             <div>
               <label className="block font-medium">Imagen</label>
               <input type="file" name="image" onChange={handleChange} className="input" />
             </div>
 
-            {/* Opening Hours */}
             <div>
               <label className="block font-medium">Horario de apertura</label>
               <input
@@ -203,25 +176,21 @@ const BranchesForm = () => {
               />
             </div>
 
-            {/* Latitud */}
             <div>
               <label className="block font-medium">Latitud</label>
               <input name="latitude" value={formData.latitude} onChange={handleChange} className="input" />
             </div>
 
-            {/* Longitud */}
             <div>
               <label className="block font-medium">Longitud</label>
               <input name="longitude" value={formData.longitude} onChange={handleChange} className="input" />
             </div>
 
-            {/* Notas */}
             <div>
               <label className="block font-medium">Notas</label>
               <textarea name="notes" value={formData.notes} onChange={handleChange} className="input" />
             </div>
 
-            {/* Activo */}
             <div className="flex items-center">
               <input
                 type="checkbox"
@@ -233,7 +202,6 @@ const BranchesForm = () => {
               <label className="font-medium">¿Sucursal activa?</label>
             </div>
 
-            {/* Botones */}
             <div className="flex justify-end gap-4 mt-6">
               <button
                 type="button"

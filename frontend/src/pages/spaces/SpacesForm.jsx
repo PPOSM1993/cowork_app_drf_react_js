@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import { Sidebar, Header } from "../../index";
+import { Sidebar, Header, axiosInstance } from "../../index";
 import { useNavigate, useParams } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 import Swal from "sweetalert2";
-import axios from "axios";
 import { CiCirclePlus } from "react-icons/ci";
 import { ImCancelCircle } from "react-icons/im";
 
@@ -43,34 +42,25 @@ const SpacesForm = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const token = localStorage.getItem("access_token");
-      const headers = { Authorization: `Bearer ${token}` };
-
       const [branchRes, tagsRes, amenitiesRes] = await Promise.all([
-        axios.get("http://localhost:8000/api/branches/", { headers }),
-        axios.get("http://localhost:8000/api/spaces/tags/"),
-        axios.get("http://localhost:8000/api/spaces/amenities/"),
+        axiosInstance.get("branches/"),
+        axiosInstance.get("spaces/tags/"),
+        axiosInstance.get("spaces/amenities/"),
       ]);
 
       setBranches(branchRes.data);
       setTags(tagsRes.data.results || []);
-      setAmenities(amenitiesRes.data.results || []); // 👈 FIX AQUÍ
+      setAmenities(amenitiesRes.data.results || []);
     };
 
     fetchData();
   }, []);
 
-
-
   useEffect(() => {
     if (id) {
       const fetchSpace = async () => {
         try {
-          const token = localStorage.getItem("access_token");
-          const res = await axios.get(`http://localhost:8000/api/spaces/spaces/${id}/`, {
-            headers: { Authorization: `Bearer ${token}` },
-          });
-
+          const res = await axiosInstance.get(`spaces/spaces/${id}/`);
           const data = res.data;
           setFormData({
             ...data,
@@ -104,8 +94,6 @@ const SpacesForm = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const token = localStorage.getItem("access_token");
-
     const formToSend = new FormData();
     for (const key in formData) {
       const value = formData[key];
@@ -118,39 +106,30 @@ const SpacesForm = () => {
 
     try {
       const config = {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Content-Type": "multipart/form-data",
-        },
+        headers: { "Content-Type": "multipart/form-data" },
       };
 
       if (id) {
-        await axios.put(`http://localhost:8000/api/spaces/spaces/${id}/`, formToSend, config);
+        await axiosInstance.put(`spaces/spaces/${id}/`, formToSend, config);
         Swal.fire({
           title: "¡Espacio actualizado!",
           icon: "success",
-          draggable: true,
           timer: 2000,
           showConfirmButton: false,
         }).then(() => {
           navigate("/spaces");
         });
-
-
       } else {
-        await axios.post("http://localhost:8000/api/spaces/", formToSend, config);
+        await axiosInstance.post(`spaces/`, formToSend, config);
         Swal.fire({
-          title: "¡Espacio Creato!",
+          title: "¡Espacio Creado!",
           icon: "success",
-          draggable: true,
           timer: 2000,
           showConfirmButton: false,
         }).then(() => {
           navigate("/spaces");
         });
-
       }
-
     } catch (error) {
       Swal.fire("Error", "No se pudo guardar el espacio", "error");
     }
@@ -167,7 +146,6 @@ const SpacesForm = () => {
           </h1>
 
           <form onSubmit={handleSubmit} className="space-y-4">
-            {/* Campos de texto */}
             {[
               { label: "Nombre", name: "name" },
               { label: "Descripción", name: "description", textarea: true },
@@ -197,7 +175,6 @@ const SpacesForm = () => {
               </div>
             ))}
 
-            {/* Tipo */}
             <div>
               <label className="block font-medium">Tipo de Espacio</label>
               <select name="type" value={formData.type} onChange={handleChange} className="input">
@@ -208,7 +185,6 @@ const SpacesForm = () => {
               </select>
             </div>
 
-            {/* Branch */}
             <div>
               <label className="block font-medium">Sucursal</label>
               <select name="branch_id" value={formData.branch_id} onChange={handleChange} className="input">
@@ -221,7 +197,6 @@ const SpacesForm = () => {
               </select>
             </div>
 
-            {/* Tags */}
             <div>
               <label className="block font-medium">Etiquetas</label>
               <select multiple value={formData.tags_ids} onChange={(e) => handleMultiSelect(e, "tags_ids")} className="input">
@@ -233,7 +208,6 @@ const SpacesForm = () => {
               </select>
             </div>
 
-            {/* Amenities */}
             <div>
               <label className="block font-medium">Amenidades</label>
               <select multiple value={formData.amenities_ids} onChange={(e) => handleMultiSelect(e, "amenities_ids")} className="input">
@@ -245,13 +219,11 @@ const SpacesForm = () => {
               </select>
             </div>
 
-            {/* Imagen */}
             <div>
               <label className="block font-medium">Imagen</label>
               <input type="file" name="image" onChange={handleChange} className="input" />
             </div>
 
-            {/* Checkboxes */}
             {[
               { name: "is_available", label: "¿Disponible?" },
               { name: "access_24_7", label: "Acceso 24/7" },
@@ -264,7 +236,6 @@ const SpacesForm = () => {
               </div>
             ))}
 
-            {/* Botones */}
             <div className="flex justify-end gap-4 mt-6">
               <button
                 type="button"
