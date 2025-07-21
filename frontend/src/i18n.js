@@ -23,6 +23,7 @@ const resources = {
       email:"Correo Electrónico",
       customers: 'Clientes',
       customers_list: 'Clientes',
+      reservation_new: 'Nueva Reservación',
 
 
       // Nuevas secciones y etiquetas del Sidebar
@@ -133,6 +134,7 @@ const resources = {
       save_customer: "Save Customer",
       customers: 'Customers',
       customers_list: 'Customers',
+      reservation_new: 'New Reservation',
     },
   },
 };
