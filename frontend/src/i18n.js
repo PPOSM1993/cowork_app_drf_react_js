@@ -69,6 +69,7 @@ const resources = {
       first_name_customer: "Nombre del Cliente",
       last_name_customer: "Apellido del Cliente",
       save_customer: "Guardar Cliente",
+      reservations_list: 'Reservas',
     },
   },
   en: {
@@ -135,6 +136,7 @@ const resources = {
       customers: 'Customers',
       customers_list: 'Customers',
       reservation_new: 'New Reservation',
+      reservations_list: 'Reservations'
     },
   },
 };

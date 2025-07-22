@@ -11,7 +11,8 @@ import {
   BranchesList,
   CustomersForm,
   CustomersList,
-  ReservationsForm
+  ReservationsForm,
+  ReservationList
 } from '.././index.js'
 
 export default function AppRouter() {
@@ -75,12 +76,24 @@ export default function AppRouter() {
           element={isAuthenticated ? <CustomersForm /> : <Navigate to="/customers" />}
         />
 
-        <Route path="*" element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />} />
 
         <Route
           path="/reservations/create"
           element={isAuthenticated ? <ReservationsForm /> : <Navigate to="/reservations" />}
         />
+
+        <Route
+          path="/reservations"
+          element={isAuthenticated ? <ReservationList /> : <Navigate to="/reservations" />}
+        />
+
+        <Route
+          path="/reservations/create/:id"
+          element={isAuthenticated ? <ReservationsForm /> : <Navigate to="/reservations" />}
+        />
+
+        <Route path="*" element={<Navigate to={isAuthenticated ? "/dashboard" : "/login"} />} />
+
 
       </Routes>
     </BrowserRouter>
