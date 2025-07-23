@@ -136,18 +136,18 @@ const SpacesTable = () => {
             sortable: true,
         },
         {
-            name: "Dirección",
-            selector: row => row.address,
+            name: "Capacidad",
+            selector: row => row.capacity,
             sortable: true,
         },
         {
-            name: "Teléfono",
-            selector: row => row.phone,
+            name: "Tipo de Espacio",
+            selector: row => row.type,
             sortable: true,
         },
         {
-            name: "Email",
-            selector: row => row.email,
+            name: "Sucursal",
+            selector: row => row.branch_id,
             sortable: true,
         },
         {
