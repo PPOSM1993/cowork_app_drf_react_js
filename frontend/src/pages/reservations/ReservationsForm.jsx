@@ -86,8 +86,8 @@ const ReservationsForm = () => {
                             <label className="block font-medium">Cliente</label>
                             {/* Cliente */}
                             <select
-                                name="customer_id"
-                                value={formData.customer_id || ''}
+                                name="customer"
+                                value={formData.customer || ''}
                                 onChange={handleChange}
                                 className="input"
                                 required
@@ -99,6 +99,7 @@ const ReservationsForm = () => {
                                     </option>
                                 ))}
                             </select>
+
 
                         </div>
 
